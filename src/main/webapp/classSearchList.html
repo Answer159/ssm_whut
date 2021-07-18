@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索结果</title>
+    <link rel="stylesheet" href="./字体图标/iconfont.css">
+    <link rel="stylesheet" href="./css/commen.css" type="text/css" />
+    <link rel="stylesheet" href="./css/classSearchList.css" type="text/css" />
+    <script src="./js/JQuery.js"></script>
+    <script src="./js/commen.js"></script>
+</head>
+
+<body>
+    <!-- 快捷导航 -->
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl">
+                <ul>
+                    <li>师到欢迎你</li>
+                    <li><a href="#">请登录</a></li>
+                    <li><a class="hot-word" href="#">注册</a></li>
+                </ul>
+            </div>
+            <div class="fr">
+                <div class="userInfo">
+                    <div class="downT">
+                        <a href="#">用户名</a>
+                    </div>
+                    <div class="downMenu">
+                        <ul>
+                            <li><a href="#">我的课程</a></li>
+                            <li><a href="#">我的订单</a></li>
+                            <li><a href="#">我的求助</a></li>
+                            <li><a href="#">注销</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- header--search -->
+    <header class="header ">
+        <!-- logo -->
+        <div class="logo">
+            <h1><a href="./index.html" title="师到">师到</a></h1>
+        </div>
+        <!-- search -->
+        <div class="search">
+
+            <input type="search" name="" id="">
+            <button>搜索</button>
+        </div>
+    </header>
+
+    <!-- 核心 -->
+    <div class="w">
+        <div class="main">
+            <!-- 类别导航 -->
+            <div class="nav">
+                <div class="tab ">
+                    <ul>
+                        <li class="classes current">全部课程</li>
+                        <li class="helps">全部求助</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 筛选检索 -->
+            <div class="navGroup">
+                <div class="groupTitle">
+                    所有分类>
+                </div>
+                <div class="groupBody">
+                    <div class="row row_first">
+                        <div class="row_title fl">
+                            领域：
+                        </div>
+                        <div class="row_body fl">
+
+                            <li class="fl"><a href="classSearchList.html?keyword=" +encodeURI(encodeURI(领域2))>领域2</a></li>
+                            <li class="fl"><a href="#">领域3</a></li>
+                            <li class="fl"><a href="#">领域4</a></li>
+                        </div>
+                    </div>
+                </div>
+                <div class="sort">
+                    <div class="by_money fl">价格 <span class="iconfont icon-jiantoushangsheng"></span></div>
+                    <div class="by_time fl">时长<span class="iconfont icon-jiantoushangsheng"></span></div>
+                </div>
+            </div>
+
+            <!-- 列表 -->
+            <div class="result ">
+                <!-- 课程列表 -->
+                <ul class="classList ">
+                </ul>
+                <!-- 求助列表 -->
+                <ul class="helpList" style="display: none;">
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+</body>
+
+<!-- tab -->
+<script>
+    $(function() {
+        $(".nav .tab li").click(function() {
+            $(this).addClass("current").siblings().removeClass("current");
+            var index = $(this).index();
+            $(".result ul").eq(index).show().siblings().hide();
+        })
+    })
+</script>
+
+<!-- 头部下拉菜单 -->
+<script>
+    $(function() {
+        $(".userInfo").mouseover(function() {
+            $(".downMenu").show();
+        })
+
+        $(".userInfo").mouseout(function() {
+            $(".downMenu").hide();
+        })
+    })
+</script>
+
+<!-- 课程列表 -->
+<script>
+    //动态生成商品信息
+    // var data = [{
+    //     title: 'JAVA教学',
+    //     Catagr: 'JAVA',
+    //     contant: 'dasdasdasddddddddddasdsadsadddddddddddddasdsads'
+    // }, {
+    //     title: 'c教学',
+    //     Catagr: 'c',
+    //     contant: 'dasdasdasddddddddddasdsadsadddddddddddddasdsads'
+    // }, {
+    //     title: 'web教学',
+    //     Catagr: 'web',
+    //     contant: 'dasdasdasddddddddddasdsadsadddddddddddddasdsads'
+    // }]
+    //
+    // var html = "";
+    // $.each(data, function(k, v) {
+    //     html += '<li class = "classInfo" id= "class_' + k + '">' +
+    //         '<div class="title">' + data[k].title + '</div>' +
+    //         '<div class = "contant">' + data[k].contant + '</div>' +
+    //         '<div class = "pic" id ="' + "class_" + k + '">' + '</div>' +
+    //         '</li>';
+    // })
+    //
+    // $(".classList").append(html);
+</script>
+
+<!-- 接受跳转信息 + 生成页面-->
+<script>
+    var request = GetLocalRequest();
+    if (request !== "") {
+        var keyword_ = decodeURI(request.keyword);
+        $(".search input").val(keyword_);
+        console.log(keyword_);
+    }
+
+
+    //申请课程和求助数据生成页面
+    //申请课程数据
+    $.ajax({
+        url: "http://localhost:8080/Tmall_SSM_war_exploded/searchClassInfo.do",
+        type: "post",
+        data: {
+            keyword: keyword_
+        },
+        dataType: 'json',
+        contantType: 'application/json; charset = utf-8',
+        success: function(data) {
+            console.log(data);
+            //加课程信息
+            var html = "";
+            var classList = data.classInfos;
+            $.each(classList, function(k, v) {
+                html += '<li class = "classInfo" id= "' + classList[k].id + '">' +
+                    '<div class="title">' + classList[k].title + '</div>' +
+                    '<div class = "contant">' + classList[k].class_content + '</div>' +
+                    '<div class = "pic" id ="' + "class_" + k + '">' + '</div>' +
+                    '</li>';
+                $("#class_" + k).css("background-image", "url()");
+            })
+            $(".classList").append(html);
+
+            //加点击课程事件
+            $(".classList .classInfo").click(function() {
+                console.log($(this).attr('id'));
+                let ClassID = $(this).attr('id');
+                window.location.href = "classDetail.html?id=" + ClassID;
+            })
+
+            //加筛选框信息
+            var html1 = "";
+            var cataList = data.catagories;
+            $.each(cataList, function(k, v) {
+                html1 += '<li class = "fl"><a href="classSearchList.html?keyword= ' +
+                    encodeURI(encodeURI(cataList[k].domain)) + ' ">' + cataList[k].domain + '</a></li>';
+            })
+            $(".groupBody row_body").append(html1);
+        }
+    })
+
+    //申请求助数据
+    $.ajax({
+        url: "http://localhost:8080/Tmall_SSM_war_exploded/searchQuestion.do",
+        type: "get",
+        data: {
+            keyword: keyword_
+        },
+        dataType: 'json',
+        contantType: 'application/json; charset = utf-8',
+        success: function(data) {
+            console.log(data);
+            var html2 = "";
+            var helpList = data.questions;
+            $.each(helpList, function(k, v) {
+                html2 += '<li class = "helpInfo" id= "' + k + '">' +
+                    '<div class="title">' + helpList[k].title + '</div>' +
+                    // '<div class = "contant">' + helpList[k].class_content + '</div>' +
+                    '<div class = "pic"  id ="' + "help_" + k + '">' + '</div>' +
+                    '</li>';
+                $("#help_" + k).css("background-image", "url()");
+
+            })
+            $(".helpList").append(html2);
+
+            //加点击求助事件
+            $(".helpList .helpInfo").click(function() {
+                console.log($(this).attr('id'));
+                let helpID = $(this).attr('id');
+                window.location.href = "helpDetail.html?id=" + helpID;
+            })
+        }
+
+    })
+</script>
+
+<script>
+    console.log("1");
+</script>
+
+
+<script src="./js/searchListSort.js"></script>
+
+
+
+</html>

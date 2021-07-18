@@ -1,0 +1,85 @@
+GET http://10.0.2.2:8080/showclassInfo
+Accept: application/json
+Cache-Control: no-cache
+
+###
+
+POST http://10.0.2.2:8080/showclassInfo
+Content-Type: application/json
+
+{
+  "classInfo_id": 1
+}
+
+###
+
+POST http://10.0.2.2:8080/showclassInfo
+Content-Type: application/json
+
+{
+  "classInfo_id": 1
+}
+
+###
+
+GET http://10.0.2.2:8080/showclassInfo
+Accept: application/json
+Cache-Control: no-cache
+
+###
+
+POST http://10.0.2.2:8080/home
+Content-Type: application/json
+
+{}
+
+###
+
+GET http://10.0.2.2:8080/home
+Accept: application/json
+Cache-Control: no-cache
+
+###
+
+POST http://10.0.2.2:8080/home
+Content-Type: application/json
+
+{}
+
+###
+
+POST http://localhost:80/api/item
+Content-Type: application/json
+
+{}
+
+###
+
+GET http://localhost:8080/home
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost/home
+Content-Type: application/json
+
+{
+
+}
+
+###
+
+POST http://localhost/home
+Content-Type: application/json
+
+{
+
+}
+
+###
+
+GET http://localhost/postClass
+
+###
+

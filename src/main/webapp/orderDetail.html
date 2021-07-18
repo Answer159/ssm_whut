@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="./css/commen.css" type="text/css" />
+    <link rel="stylesheet" href="./css/oderDetail.css" type="text/css" />
+    <script src="js/JQuery.js"></script>
+</head>
+
+<body>
+    <!-- 快捷导航 -->
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl">
+                <ul>
+                    <li>师到欢迎你</li>
+                    <li><a href="#">请登录</a></li>
+                    <li><a class="hot-word" href="#">注册</a></li>
+                </ul>
+            </div>
+            <div class="fr">
+                <div class="userInfo">
+                    <div class="downT">
+                        <a href="#">用户名</a>
+                    </div>
+
+                    <div class="downMenu">
+                        <ul>
+                            <li><a href="#">我的课程</a></li>
+                            <li><a href="#">我的订单</a></li>
+                            <li><a href="#">我的求助</a></li>
+                            <li><a href="#">注销</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- header--search -->
+    <header class="header ">
+        <!-- logo -->
+        <div class="logo">
+            <h1><a href="index.html" title="师到">师到</a></h1>
+        </div>
+        <!-- search -->
+        <div class="search">
+
+            <input type="search" name="" id="">
+            <button>搜索</button>
+        </div>
+    </header>
+
+    <div class="main">
+        <!-- 订单状态 -->
+        <div class="oder_state">
+            <div class="tab">
+                <ul>
+                    <li class="state fl "><span>意向确定</span>></li>
+                    <li class="state fl"><span>制定价格</span>></li>
+                    <li class="state fl"><span>等待学生确定</span>></li>
+                    <li class="state fl"><span>收款</span></li>
+                </ul>
+            </div>
+
+            <div class="down">
+                <div class="contant">
+                    <div class="triangle_bottom">
+                        <span></span>
+                    </div>
+                    <div class="item">
+                        <h3>当前订单状态：正在确定订单</h3>
+                        <li><span>当前状态下，您可以和老师沟通交流，互相了解来确定教学价格和时长。</span></li>
+                    </div>
+                    <div class="item">
+                        <h3>当前订单状态：正在确定订单</h3>
+                        <li><span>当前状态下，您可以和老师沟通交流，互相了解来确定教学价格和时长。</span></li>
+                    </div>
+                    <div class="item">
+                        <h3>当前订单状态：正在确定订单</h3>
+                        <li><span>当前状态下，您可以和老师沟通交流，互相了解来确定教学价格和时长。</span></li>
+                    </div>
+                    <div class="item">
+                        <h3>当前订单状态：正在确定订单</h3>
+                        <li><span>当前状态下，您可以和老师沟通交流，互相了解来确定教学价格和时长。</span></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 订单信息 -->
+        <div class="oder_detail">
+            <div class="head">
+                订单信息
+            </div>
+            <div class="oderInfo">
+            </div>
+            <div class="body">
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+<!-- 头部的用户选项控制 -->
+<script>
+    $(function() {
+        $(".userInfo ").mouseover(function() {
+            $(".downMenu").show();
+        })
+        $(".userInfo ").mouseout(function() {
+            $(".downMenu").hide();
+        })
+    })
+</script>
+
+<!-- 状态移动 -->
+<script>
+    var data = {
+        state: 3
+    }
+
+    $(function() {
+        var states = $(".state");
+        var contants = $(".item");
+        $(states[data.state]).addClass("current");
+        $(contants[data.state]).show();
+        var left = 8 + 24 * data.state;
+        $(".contant .triangle_bottom span").css("left", left + '%');
+    })
+</script>
+
+<!-- 动态生成订单详情 -->
+<script>
+    $.ajax({
+        url: "http://localhost:8080/Tmall_SSM_war_exploded/showOder.do",
+        type: "post",
+        dataType: 'json',
+        //contantType: 'application/json; charset = utf-8',
+        success: function(data) {
+            console.log(data);
+            let html1 = '';
+            if (data.msg === "seller") {
+                switch (data.Oder_.oder_status) {
+                    case 0:
+                        html1 = `
+                <div>老师：${data.seller}</div>
+                <div>学生：${data.buyer}</div>
+                <button class = "want">愿意教学</button>
+                        `
+                        break;
+
+                    case 1:
+                        html1 = `
+                <div>老师：${data.seller}</div>
+                <div>学生：${data.buyer}</div>
+                <div>准确价格：<input name = "price" id = "price" type="text"></div>
+                <div>准确教学时长：<input name = "suggestTime" id = "suggestTime" type="text"></div>
+                <button class = "confirm">确定</button>`
+                        break;
+                    case 2:
+                        html1 = `
+                <div>老师：${data.seller}</div>
+                <div>学生：${data.buyer}</div>
+                <div>准确价格：${order_.price}</div>
+                <div>准确教学时长：${order_.suggestTime}</div>
+                <button class="btn_none">等待学生确定</button>`
+                        break;
+                    case 3:
+                        html1 = `
+                <div>老师：${data.seller}</div>
+                <div>学生：${data.buyer}</div>
+                <div>准确价格：${order_.price}</div>
+                <div>准确教学时长：${order_.suggestTime}</div>
+                <button class="btn_none">等待学生付款</button>`
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+            if (data.msg === "buyer") {
+                switch (data.Oder_.oder_status) {
+                    case 0:
+                        html1 = `
+                <div>老师：${data.seller}</div>
+                <div>学生：${data.buyer}</div>
+                <button class="btn_none">等待老师接受</button>
+                        `
+                        break;
+
+                    case 1:
+                        html1 = `
+                <div>老师：${data.seller}</div>
+                <div>学生：${data.buyer}</div>
+                <div>准确价格：<input type="text"></div>
+                <div>准确教学时长：<input type="text"></div>
+                <button class="btn_none">等待老师制定</button>`
+                        break;
+                    case 2:
+                        html1 = `
+                <div>老师：${data.seller}</div>
+                <div>学生：${data.buyer}</div>
+                <div>准确价格：${order_.price}</div>
+                <div>准确教学时长：${order_.suggestTime}</div>
+                <button class = "finish">确定</button>`
+                        break;
+                    case 3:
+                        html1 = `
+                <div>老师：${data.seller}</div>
+                <div>学生：${data.buyer}</div>
+                <div>准确价格：${order_.price}</div>
+                <div>准确教学时长：${order_.suggestTime}</div>
+                <button class = "pay">付款</button>`
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+            $(".body").append(html1);
+
+            //确定有意向
+            $(".want button").click(function() {
+                $.ajax({
+                    url: "http://localhost:8080/Tmall_SSM_war_exploded/want.do",
+                    type: "post",
+                    data: {
+                        "order_id": data.order_.id
+                    },
+                    dataType: 'json',
+                    //contantType: 'application/json; charset = utf-8',
+                    success: function(data_want) {
+                        console.log(data_want);
+                        window.location.reload();
+                    }
+                })
+            })
+
+            //老师制定价格
+            $(".confirm button").click(function() {
+                let price = $(".body input").eq(0).val();
+                let suggestTime = $(".body input").eq(1).val();
+
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8080/Tmall_SSM_war_exploded/confirm.do",
+                    data: {
+                        "order_id": data.order_.id,
+                        "price": price,
+                        "suggestTime": suggestTime
+                    },
+                    dataType: "json",
+                    success: function(data_confirm) {
+                        console.log(data_confirm);
+                        window.location.reload();
+                    }
+                });
+            })
+
+            //学生确定价格
+            $(".finish button").click(function() {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8080/Tmall_SSM_war_exploded/finish.do",
+                    data: {
+                        "order_id": data.order_.id
+                    },
+                    dataType: "json",
+                    success: function(data_finish) {
+                        window.location.reload();
+
+                    }
+                });
+            })
+
+
+        }
+    })
+</script>
+
+
+</html>

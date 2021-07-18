@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="wap-font-scale" content="no" />
+    <meta name="viewport" content="user-scalable=no, width=device-width" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>创建课程</title>
+    <link rel="stylesheet" href="css/commen.css" type="text/css" />
+    <link rel="stylesheet" href="css/createCource.css" type="text/css" />
+    <link rel="stylesheet" href="./css/upload.css">
+    <link rel="stylesheet" href="./axUI/css/ax.css">
+    <script src="./axUI/js/ax.js"></script>
+    <script src="./js/JQuery.js"></script>
+    <script src="./js/createCource.js"></script>
+
+</head>
+
+<body>
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl">
+                <ul>
+                    <li>师到欢迎你</li>
+                    <li><a href="#">请登录</a></li>
+                    <li><a class="hot-word" href="#">注册</a></li>
+                </ul>
+            </div>
+            <div class="fr">
+                <div class="userInfo">
+                    <div class="downT">
+                        <a href="#">用户名</a>
+                    </div>
+
+                    <div class="downMenu">
+                        <ul>
+                            <li><a href="#">我的课程</a></li>
+                            <li><a href="#">我的订单</a></li>
+                            <li><a href="#">我的求助</a></li>
+                            <li><a href="#">注销</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- header--search -->
+    <header class="header ">
+        <!-- logo -->
+        <div class="logo">
+            <h1><a href="./index.html" title="师到">师到</a></h1>
+        </div>
+        <!-- search -->
+        <div class="search">
+
+            <input type="search" name="" id="">
+            <button>搜索</button>
+        </div>
+    </header>
+
+
+    <div class="w">
+        <div class="main">
+            <div class="top_title">
+                创建课程
+            </div>
+            <div class="from_contant">
+                <form id="#from" action="" method="POST">
+                    <div class="title">
+                        <span>标题：</span> <br>
+                        <input type="text" name="title" id="title" placeholder="请输入标题（不超过20字）">
+                    </div>
+
+                    <div class="cata">
+                        <span>分区:</span>
+                        <select name="categroy" id="categroy">
+
+                            <option value="0" selected>IT</option>
+                            <option value="1">音乐</option>
+                            <option value="2">美术</option>
+                            <option value="3">机械设计</option>
+                        </select>
+                    </div>
+
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">参考价格：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input"><input name="price" id="price" placeholder="输入参考价格" value="" type="text"></div>
+                        </div>
+                        <span class="ax-form-txt ax-color-ignore">单位(元)</span>
+                    </div>
+
+                    <div class="ax-flex-row">
+                        <div class="ax-form-label">参考时长：</div>
+                        <div class="ax-form-con">
+                            <div class="ax-form-input"><input name="time" id="time" placeholder="输入参考时长" value="" type="text"></div>
+                        </div>
+                        <span class="ax-form-txt ax-color-ignore">单位(时)</span>
+                    </div>
+
+
+                    <div class="type">
+                        <span>简介：</span> <br>
+                        <input type="text" name="textIntro" id="textIntro" placeholder="请输入简介">
+                    </div>
+
+
+
+                    <div class="class_contant">
+                        <span>教学内容：</span>
+                        <textarea name="class_contant" id="class_contant" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div class="front_knowledge">
+                        <span>前置知识：</span>
+                        <textarea name="front_knowledge" id="front_knowledge" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div class="tools">
+                        <span>教学工具：</span>
+                        <textarea name="tools" id="tools" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="add">
+                        <span>附加：</span>
+                        <textarea name="add" id="add" cols="30" rows="10"></textarea>
+                    </div>
+
+                </form>
+                <div class="pic">
+                    图片上传：
+                    <div id="uploadImgs" style="margin-bottom: 20px;">
+                        <label for="fileUpIpt" id="labelId">
+                            <div class="uploadImgs-add">+</div>
+                        </label>
+                        <div class="type-file-div">
+                            <input type="file" class="input-file" name="luTest[]" style="display: none;">
+                        </div>
+                    </div>
+
+                </div>
+                <button class="submit ax-btn  ax-lg   ax-warning ax-reverse">submit</button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+<!-- 图片上传、 -->
+<script>
+    var gbOption = null;
+    var filesArr = [];
+    var fileClass = 'input-file';
+    var imgObj2 = [];
+    var upoad;
+    var imgMaxNum = 3;
+    setTimeout(function() {
+        imgsUpload(imgObj2, upoad, imgMaxNum);
+        createPreDiv();
+    }, 100)
+</script>
+
+<script src="./js/upload.js" type="text/javascript"></script>
+
+<!-- submit -->
+<script>
+    $(".submit").click(function() {
+        // 获取信息
+        let classData = $("form").serializeArray();
+        console.log(filesArr);
+        console.log(classData);
+        $.ajax({
+            url: "http://localhost:8080/Tmall_SSM_war_exploded/PostClass.do",
+            type: "post",
+            data: {
+                classInfo: classData,
+                pics: filesArr,
+                //session:session
+            },
+            dataType: 'json',
+            contantType: 'application/json; charset = utf-8',
+            success: function(data) {}
+        })
+    })
+</script>
+
+</html>

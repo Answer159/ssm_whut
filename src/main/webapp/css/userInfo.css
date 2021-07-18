@@ -1,0 +1,244 @@
+.current {
+    color: rgb(96, 140, 255);
+}
+
+.functionlist {
+    width: 150px;
+    height: 205px;
+    display: inline-block;
+    float: left;
+    background-color: #f5f5f5;
+}
+
+.infolink {
+    display: block;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid rgb(12, 12, 12, 0.5);
+    text-decoration: none;
+}
+
+
+/* //用户信息 */
+
+.infoshow-userinfo {
+    float: right;
+    width: 920px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    background-color: #f5f5f5;
+}
+
+.infoshow-userinfo .info {
+    float: left;
+    width: 700px;
+}
+
+.infoshow-userinfo tr {
+    height: 50px;
+    line-height: 50px;
+}
+
+.infoshow-userinfo .title {
+    display: inline-block;
+    width: 150px;
+}
+
+.infoshow-userinfo .operate {
+    width: 220px;
+    float: right;
+}
+
+.infoshow-userinfo .operate a {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.infoshow-userinfo .operate button {
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid hsl(280, 7%, 92%);
+    border-radius: 25%;
+    background-color: #f5f5f5;
+}
+
+.infoshow-userinfo .operate button:hover {
+    border: 1px solid black;
+}
+
+
+/* 我的课程*/
+
+.infoshow-myclass {
+    float: right;
+    width: 920px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    background-color: #f5f5f5;
+}
+
+.infoshow-myclass .info {
+    width: 100%;
+}
+
+
+/* 我的订单 */
+
+
+/* 我的课程+我的订单*/
+
+.infoshow-myorder {
+    float: right;
+    width: 920px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    background-color: #f5f5f5;
+}
+
+.infoshow-myorder .info {
+    width: 100%;
+}
+
+.infohead {
+    border-bottom: 2px solid rgb(12, 12, 12, 0.5);
+    margin-bottom: 49px;
+}
+
+.infohead span {
+    height: 50px;
+}
+
+.infohead span a {
+    display: inline-block;
+    width: 300px;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+}
+.infokind a{
+    text-decoration:none;
+}
+
+.orderinfo-title {
+    width: 100%;
+}
+
+.orderinfo-title tr {
+    background-color: #eae8eb;
+    height: 50px;
+    text-align: center;
+}
+
+.orderinfo-title td {
+    width: 150px;
+}
+
+.orderinfo-list {
+    width: 100%;
+    border-color: rgb(12, 12, 12, 0.5);
+}
+
+.orderinfo-head td {
+    border-color: transparent;
+    width: 920px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #eae8eb;
+}
+
+.orderinfo-body td {
+    height: 150px;
+    width: 154px;
+    text-align: center;
+    border-color: rgb(12, 12, 12, 0.5);
+}
+.classinfo{
+    padding-left: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    height: 100px;
+}
+.classpic {
+    display: inline-block;
+    float: left;
+}
+
+.classinfo-text {
+    height: 100px;
+    float: left;
+    display: inline-block;
+    margin-left: 25px;
+    text-align: left;
+}
+.classitem{
+  margin-bottom: 20px;
+  display: inline-block;
+}
+.class-time{
+    margin-left: 10px;
+    display: inline-block;
+}
+.class-cost{
+    margin-left: 10px;
+    display: inline-block;
+}
+.classinfo-binfo{
+    line-height: 13px;
+    font-size: 12px;
+}
+/* 我的提问 */
+
+.infoshow-myqs {
+    float: right;
+    width: 920px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    background-color: #f5f5f5;
+}
+
+.infoshow-myqs span {
+    display: block;
+    width: 900px;
+    height: 50px;
+}
+
+.infoshow-myqs .question-list a {
+    height: 50px;
+    line-height: 50px;
+}
+
+.infoshow-myqs .question-list .item {
+    float: left;
+    width: 80%;
+    color: black;
+}
+
+.infoshow-myqs .question-list .item:visited {
+    color: #7b7e86;
+}
+
+.infoshow-myqs .question-list .reply {
+    float: right;
+    width: 20%;
+    color: #7b7e86;
+}
+
+.infoshow-myqs .question-list-end {
+    color: #7b7e86;
+    text-align: center;
+    line-height: 50px;
+}
+a{
+    text-decoration:underline;
+}

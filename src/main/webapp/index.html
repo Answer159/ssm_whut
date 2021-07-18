@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="wap-font-scale" content="no" />
+    <meta name="viewport" content="user-scalable=no, width=device-width" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>首頁</title>
+    <meta name="describtion" content="...." />
+    <link rel="stylesheet" href="./css/commen.css" type="text/css" />
+    <link rel="stylesheet" href="./css/index.css" type="text/css" />
+    <link rel="stylesheet" href="./axUI/css/ax.css">
+    <link rel="stylesheet" href="./axUI/plugins/swiper/swiper.min.css">
+    <script src="./axUI/js/ax.min.js"></script>
+    <script src="./axUI/plugins/swiper/swiper.min.js"></script>
+    <script src="./js/JQuery.js"></script>
+</head>
+
+<body>
+    <!-- 快捷导航 -->
+<!--    <section class="shortcut">-->
+<!--        <div class="w">-->
+<!--            <div class="fl">-->
+<!--                <ul>-->
+<!--                    <li>师到欢迎你</li>-->
+<!--                    <li><a href="./loginPage.html">请登录</a></li>-->
+<!--                    <li><a class="hot-word" href="#">注册</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="fr">-->
+<!--                <div class="userInfo">-->
+<!--                    <div class="downT">-->
+<!--                        <a href="#">用户名</a>-->
+
+<!--                    </div>-->
+<!--                    <div class="downMenu">-->
+<!--                        <ul>-->
+<!--                            <li><a href="#">我的课程</a></li>-->
+<!--                            <li><a href="#">我的订单</a></li>-->
+<!--                            <li><a href="#">我的求助</a></li>-->
+<!--                            <li><a href="#">注销</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+
+    <!-- header--search -->
+    <header class="header ">
+        <!-- logo -->
+        <div class="logo">
+            <h1><a href="./index.html" title="师到">师到</a></h1>
+        </div>
+        <!-- search -->
+        <div class="search">
+
+            <input type="search" name="" id="">
+            <button>搜索</button>
+        </div>
+    </header>
+
+    <!-- nav -->
+
+    <div class="w">
+        <div class="main">
+            <div class="nav">
+                <div class="dropdown fl ">
+                    <div class="dt">
+                        全部课程分类
+                    </div>
+                    <div class="dd">
+                        <ul>
+                            <li><a href="#">种类1</a></li>
+                            <li><a href="#">种类2</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="navitems">
+                    <ul>
+                        
+                        <li><a href="questionDetail.html">求助区</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 主区域 -->
+    <div class="w">
+        <div class="main">
+            <!-- 广告轮播图 -->
+            <div class="ad">
+                <div class="swiper-container" id="swiper01">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">内容</div>
+                        <div class="swiper-slide">内容</div>
+                        <div class="swiper-slide">内容</div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <script type="text/javascript" src="https://src.axui.cn/src/plugins/swiper/swiper.min.js"></script>
+                <script type='text/javascript'>
+                    var swiper01 = new Swiper('#swiper01', {
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                    });
+                </script>
+
+            </div>
+            <!-- 推荐 -->
+            <div class="recommend">
+                <div class="head">
+                    热门课程推荐|领域
+                </div>
+                <ul class="classList">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- 登录 -->
+<script src="js/getUser.js"></script>
+<!-- 头部的用户选项控制+搜索控制 -->
+
+<script src="./js/search.js"></script>
+
+<script>
+    $(function() {
+        $(".userInfo ").mouseover(function() {
+            $(".downMenu").show();
+        })
+        $(".userInfo ").mouseout(function() {
+            $(".downMenu").hide();
+        })
+        $("header .search button").click(function() {
+
+        })
+    })
+</script>
+
+
+
+<script>
+    //动态生成商品信息   
+    $.ajax({
+        url: "http://localhost:8080/Tmall_SSM_war_exploded/home.do",
+        type: "get",
+        dataType: "json",
+        contantType: 'application/json; charset = utf-8',
+        success: function(data) {
+            console.log(data);
+            //生成领域导航栏
+            var html1 = "";
+            var cataList = data.categories;
+            console.log(cataList);
+            // <li><a href="#">种类1</a></li>
+            $.each(cataList, function(k, v) {
+                html1 += '<li><a href="classSearchList.html?keyword=' + encodeURI(encodeURI(cataList[k].domain)) + ' ">' + cataList[k].domain + '</a></li>';
+            })
+            $(".dd ul").append(html1);
+
+            // 生成推荐课程信息
+            var html = "";
+            var classList = data.classInfos;
+            $.each(classList, function(k, v) {
+                html += '<li class = "classInfo" id ="' + classList[k].classId + '" >' +
+                    '<div class="title">' + classList[k].title + '</div>' +
+                    '<div class = "contant">' + classList[k].class_content + '</div>' +
+                    '<div class = "pic" id ="' + "class_" + k + '">' + '</div>' +
+                    '</li>';
+                $("#class_" + k).css("background-image", "url(./images/star.png)");
+            })
+            $(".classList").append(html);
+        }
+    })
+</script>
+
+<script src="./js/toShowClass.js"></script>
+
+</html>

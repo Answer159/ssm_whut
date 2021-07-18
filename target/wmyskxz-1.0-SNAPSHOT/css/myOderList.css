@@ -1,0 +1,56 @@
+/* 导航 */
+
+.nav {
+    height: 50px;
+    border-bottom: 2px solid #b1191a;
+}
+
+#classes {
+    background-color: silver;
+}
+
+.nav .tab {
+    height: 45px;
+    width: 1050px;
+}
+
+.nav .tab ul {
+    padding: 0;
+}
+
+.nav .tab ul li {
+    float: left;
+}
+
+.nav .tab ul li a {
+    display: block;
+    height: 50px;
+    width: 150px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+/* 二级导航 */
+
+.tab_second {
+    height: 30px;
+    width: 1100px;
+}
+
+.tab_second ul {
+    padding: 0;
+}
+
+.tab_second ul li {
+    float: left;
+}
+
+.tab_second ul li a {
+    display: block;
+    margin-top: 5px;
+    height: 20px;
+    width: 150px;
+    line-height: 20px;
+    text-align: center;
+}

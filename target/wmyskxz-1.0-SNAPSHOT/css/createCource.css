@@ -1,0 +1,231 @@
+.top_title {
+    margin-top: 20px;
+    height: 50px;
+    width: 160px;
+    line-height: 50px;
+    border-radius: 8px;
+    background-color: orangered;
+    font-size: 22px;
+    text-align: center;
+    color: white;
+}
+
+.from_contant {
+    margin-top: 20px;
+    padding: 5% 15%;
+    background-color: rgba(206, 210, 229);
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.from_contant .title {
+    margin: 10px 0;
+}
+
+.from_contant .title input {
+    outline-style: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 13px 14px;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+
+.from_contant .title input:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+
+
+/* 图片上传 */
+
+.from_contant .pic {
+    margin-top: 30px;
+}
+
+.pic .pic_box {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 10px;
+    height: 200px;
+    padding: 13px 14px;
+    width: 90%;
+    background-color: white;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+
+.pic .img_style {
+    display: block;
+    width: 140px;
+    height: 170px;
+    background-size: 100%, auto;
+}
+
+.from_contant .pic .btn_add_pic {
+    display: inline-block;
+    margin-left: 20px;
+    height: 35px;
+    line-height: 35px;
+    width: 150px;
+    background-color: rgb(101, 230, 75);
+    border: 2px solid rgb(142, 230, 139);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+
+/* 领域 */
+
+.from_contant .cata {
+    margin-top: 30px;
+}
+
+.from_contant .cata select {
+    margin-left: 30px;
+    padding: 10px 10px;
+    width: 10%;
+    font-size: 16px;
+    background-color: white;
+}
+
+.from_contant .type {
+    margin-top: 30px;
+}
+
+.from_contant .type input {
+    outline-style: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 13px 14px;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+
+.from_contant .type input:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+
+.from_contant .class_contant {
+    margin-top: 30px;
+}
+
+.from_contant .class_contant textarea {
+    outline-style: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 13px 14px;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+
+.from_contant .class_contant textarea:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+
+.from_contant .front_knowledge {
+    margin-top: 30px;
+}
+
+.from_contant .front_knowledge textarea {
+    outline-style: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 13px 14px;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+
+.from_contant .front_knowledge textarea:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+
+.from_contant .tools {
+    margin-top: 30px;
+}
+
+.from_contant .tools textarea {
+    outline-style: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 13px 14px;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+
+.from_contant .tools textarea:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+
+.from_contant .add {
+    margin-top: 30px;
+}
+
+.from_contant .add textarea {
+    outline-style: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding: 13px 14px;
+    width: 90%;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+
+.from_contant .add textarea:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+
+.from_contant .submit {
+    margin: 40px 35%;
+    height: 50px;
+    width: 160px;
+    line-height: 50px;
+}
+
+.ax-flex-row {
+    margin-top: 30px;
+}
+
+.ax-flex-row .ax-form-label {
+    width: 100px;
+    margin-left: 0;
+    margin-right: 0px;
+    justify-content: left;
+}

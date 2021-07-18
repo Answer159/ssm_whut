@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="https://src.axui.cn/src/css/ax.css">
+    <link rel="stylesheet" href="css/commen.css">
+    <link rel="stylesheet" href="css/userInfo.css">
+    <script src="./js/JQuery.js"></script>
+</head>
+
+<body>
+<script src = './js/getUser.js'></script>
+<!--    <section class="shortcut">-->
+<!--        <div class="w">-->
+<!--            <div class="fl">-->
+<!--                <ul>-->
+<!--                    <li>师到欢迎你</li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="fr">-->
+<!--                <div class="userInfo">-->
+<!--                    <div class="downT">-->
+<!--                        <a href="#">用户名</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+    <div class="main">
+        <section class="functionlist">
+            <a href="#" class="infolink current">基本信息</a>
+            <a href="#" class="infolink">已发课程</a>
+            <a href="#" class="infolink">我的订单</a>
+            <a href="#" class="infolink">我的提问</a>
+        </section>
+
+
+        <div class="tab-contant">
+            <!-- 个人信息展示 -->
+            <div class="infoshow-userinfo  item">
+<!--                <div class="info">-->
+<!--                    <table>-->
+<!--                        <tr>-->
+<!--                            <td class="title">用户姓名:</td>-->
+<!--                            <td class="content">我是张三</td>-->
+<!--                            <td></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td class="title">联系电话:</td>-->
+<!--                            <td class="content">18856855447</td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td class="title">个人介绍:</td>-->
+<!--                            <td class="content">-->
+<!--                                这里是个人说明-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--                <div class="operate">-->
+<!--                    <button>修改信息</button>-->
+<!--                </div>-->
+            </div>
+
+            <!-- 我的课程 -->
+
+            <div class="infoshow-myclass  item" style="display: none;">
+                <div class="info">
+                    <table class="orderinfo-title" border="0" cellspacing="5">
+                        <tr>
+                            <td colspan="5">课程信息</td>
+                            <td>课程操作</td>
+                        </tr>
+                        <tr style="height: 25px;"></tr>
+                    </table>
+                    <table class="orderinfo-list" border="1" cellspacing="0" cellpadding="0">
+                        <tbody class="orderinfo-body CLASSLISTHEAD">
+                            <tr>
+                                <td colspan="5">
+                                    <div class="classinfo">
+                                        <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3010395895,4179483238&fm=26&gp=0.jpg" height="100" width="100" class="classpic">
+                                        <div class="classinfo-text">
+                                            <div class="classitem">
+                                                课程名称：
+                                                <a href="">算法实践</a> <br />
+                                            </div>
+                                            <div class="class-time">
+                                                估计时长：
+                                                <a href="">20</a>小时
+                                            </div>
+                                            <div class="class-cost">
+                                                课程价格：
+                                                <a href="">288</a>元 <br />
+                                            </div>
+                                            <div class="classinfo-binfo">
+                                                简介：
+                                                <div class="content">基于算法结构与计算思想，解读算法奥妙</div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <td>
+                                        <button>课程修改</button>
+                                        <br />
+                                        <button>删除课程</button>
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- 订单详情 -->
+
+            <div class="infoshow-myorder  item" style="display: none;">
+                <div class="infohead">
+                    <span class="infokind">
+                        <a href="#">全部订单</a>
+                    </span>
+                    <span class="infokind" style="border-left: 1px solid rgb(12, 12, 12,0.5);">
+                        <a href="#">进行中</a>
+                    </span>
+                    <span class="infokind" style="border-left: 1px solid rgb(12, 12, 12,0.5);">
+                        <a href="#">已完成</a>
+                    </span>
+                </div>
+                <div class="info">
+                    <table class="orderinfo-title" border="0" cellspacing="5">
+                        <tr>
+                            <td colspan="4">课程信息</td>
+                            <td>订单状态</td>
+                            <td>交易操作</td>
+                        </tr>
+                        <tr style="height: 50px;"></tr>
+                    </table>
+                    <table class="orderinfo-list" id="ORDERINFO-HEAD" border="1" cellspacing="0" cellpadding="5">
+                        <tbody class="orderinfo-head">
+                            <tr>
+                                <td colspan="6" style="text-indent: 2em">订单号：
+                                    <div class="content" style="display: inline-block;">2021050801</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody class="orderinfo-body">
+                            <tr>
+                                <td colspan="4">
+                                    <div class="classinfo">
+                                        <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3010395895,4179483238&fm=26&gp=0.jpg" height="100" width="100" class="classpic">
+                                        <div class="classinfo-text">
+                                            <div class="classitem">
+                                                课程名称：
+                                                <a href="">算法实践</a> <br />
+                                            </div>
+                                            <div class="class-time">
+                                                估计时长：
+                                                <a href="">20</a>小时
+                                            </div>
+                                            <div class="class-cost">
+                                                课程价格：
+                                                <a href="">288</a>元 <br />
+                                            </div>
+                                            <div class="classinfo-binfo">
+                                                简介：
+                                                <div class="content">基于算法结构与计算思想，解读算法奥妙</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    进行中
+                                </td>
+                                <td>
+                                    <button>评价</button>
+                                    <button>查看详情</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 问题清单 -->
+
+            <div class="infoshow-myqs  item" style="display: none;">
+                <span class="question-list">
+                    <a href="#" class="item">一个奇奇怪怪的问题
+                        <a href="#" class="reply">回复数：2</a>
+                    </a>
+                </span>
+                <span class="question-list-end">
+                    没有了
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="./js/profile.js"></script>
+
+</html>

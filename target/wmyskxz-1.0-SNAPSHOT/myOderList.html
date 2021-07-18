@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的订单</title>
+    <link rel="stylesheet" href="./css/commen.css" type="text/css" />
+    <link rel="stylesheet" href="./css/myOderList.css" type="text/css" />
+    <script src="js/JQuery.js"></script>
+</head>
+
+<body>
+    <!-- 快捷导航 -->
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl">
+                <ul>
+                    <li>师到欢迎你</li>
+                    <li><a href="#">请登录</a></li>
+                    <li><a class="hot-word" href="#">注册</a></li>
+                </ul>
+            </div>
+            <div class="fr">
+                <div class="userInfo">
+                    <div class="downT">
+                        <a href="#">用户名</a>
+
+                    </div>
+                    <div class="downMenu">
+                        <ul>
+                            <li><a href="#">我的课程</a></li>
+                            <li><a href="#">我的订单</a></li>
+                            <li><a href="#">我的求助</a></li>
+                            <li><a href="#">注销</a></li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- header--search -->
+    <header class="header ">
+        <!-- logo -->
+        <div class="logo">
+            <h1><a href="index.html" title="师到">师到</a></h1>
+        </div>
+        <!-- search -->
+        <div class="search">
+
+            <input type="search" name="" id="">
+            <button>搜索</button>
+        </div>
+    </header>
+
+    <div class="w">
+        <div class="main">
+            <!-- 一级导航 -->
+            <div class="nav">
+                <div class="tab ">
+                    <ul>
+                        <li><a href="#" id="classes">全部订单</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 二级导航 -->
+            <div class="tab_second">
+                <ul>
+                    <li><a href="#">正在进行</a></li>
+                    <li><a href="#">已经完成</a></li>
+                    <li><a href="#">我为老师</a></li>
+                    <li><a href="#">我为学生</a></li>
+                </ul>
+            </div>
+
+
+            <!-- 订单列表 -->
+            <div class="list">
+                <ul class="oder_list">
+                    <li class="oder_info">
+                        <div class="pic">
+
+                        </div>
+                        <div class="title">
+                            <h1>标题</h1>
+                            <span>介绍</span>
+
+                        </div>
+                        <div class="info">
+                            <h4>开始时间：</h4>
+                            <h4>结束时间：</h4>
+                            <h4>老师</h4>
+                            <h4>学生</h4>
+                            <h4>价格</h4>
+                        </div>
+                        <div class="stage">
+                            <h1>阶段</h1>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+<script>
+    // 头部的用户选项控制
+    $(function() {
+        $(".userInfo ").mouseover(function() {
+            $(".downMenu").show();
+        })
+        $(".userInfo ").mouseout(function() {
+            $(".downMenu").hide();
+        })
+    })
+</script>
+
+<!-- 生成订单列表 -->
+<script>
+    var data = [{
+        tital:Cdsa++,
+        contant:dddddddasdsadwasdsadw,
+        
+
+
+    }]
+
+     
+</script>
+</html>

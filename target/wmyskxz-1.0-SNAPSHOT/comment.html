@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布评论</title>
+    <link rel="stylesheet" href="css/commen.css">
+    <link rel="stylesheet" href="css/comment.css">
+    <script src="./js/commen.js"></script>
+</head>
+
+<body>
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl">
+                <ul>
+                    <li>师到欢迎你</li>
+                </ul>
+            </div>
+            <div class="fr">
+                <div class="userInfo">
+                    <div class="downT">
+                        <a href="#">用户名</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="main">
+        <!-- 订单信息 -->
+
+        <div class="oder_detail">
+            <div class="head">
+                订单信息
+            </div>
+            <div class="body">
+            </div>
+        </div>
+
+        <!-- 评价 -->
+        <div class="comment">
+            <div class="oder_comment">
+                <div class="title">
+                    <span class="title-name">
+                        我的上课感受
+                    </span>
+                </div>
+                <div class="comment-edit">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="在这里编辑评论"></textarea>
+                </div>
+            </div>
+            <button>发布评论</button>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    let localRequest = GetLocalRequest();
+    let Order_ID = parseInt(localRequest.order_id);
+    let Class_ID = parseInt(localRequest.classInfo_id);
+</script>
+
+</html>

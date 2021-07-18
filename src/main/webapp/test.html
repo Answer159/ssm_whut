@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="POST">
+        <div><label for="username">用户名</label><input type="text" name="username"></div>
+
+        <label for="password">密码</label><input type="text" name="password">
+        <input type="button" value="submit" name="submit" id="submit">
+    </form>
+
+</body>
+<script src="./js/JQuery.js"></script>
+<script>
+    $("#submit").click(function() {
+        console.log("1");
+        let data = $("form").serializeArray();
+        console.log(data);
+    })
+</script>
+
+</html>
