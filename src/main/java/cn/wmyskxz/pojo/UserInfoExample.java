@@ -573,6 +573,146 @@ public class UserInfoExample {
             addCriterion("account not between", value1, value2, "account");
             return (Criteria) this;
         }
+
+        public Criteria andCollection_classIsNull() {
+            addCriterion("collection_class is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classIsNotNull() {
+            addCriterion("collection_class is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classEqualTo(String value) {
+            addCriterion("collection_class =", value, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classNotEqualTo(String value) {
+            addCriterion("collection_class <>", value, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classGreaterThan(String value) {
+            addCriterion("collection_class >", value, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classGreaterThanOrEqualTo(String value) {
+            addCriterion("collection_class >=", value, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classLessThan(String value) {
+            addCriterion("collection_class <", value, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classLessThanOrEqualTo(String value) {
+            addCriterion("collection_class <=", value, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classLike(String value) {
+            addCriterion("collection_class like", value, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classNotLike(String value) {
+            addCriterion("collection_class not like", value, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classIn(List<String> values) {
+            addCriterion("collection_class in", values, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classNotIn(List<String> values) {
+            addCriterion("collection_class not in", values, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classBetween(String value1, String value2) {
+            addCriterion("collection_class between", value1, value2, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_classNotBetween(String value1, String value2) {
+            addCriterion("collection_class not between", value1, value2, "collection_class");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionIsNull() {
+            addCriterion("collection_question is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionIsNotNull() {
+            addCriterion("collection_question is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionEqualTo(String value) {
+            addCriterion("collection_question =", value, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionNotEqualTo(String value) {
+            addCriterion("collection_question <>", value, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionGreaterThan(String value) {
+            addCriterion("collection_question >", value, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionGreaterThanOrEqualTo(String value) {
+            addCriterion("collection_question >=", value, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionLessThan(String value) {
+            addCriterion("collection_question <", value, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionLessThanOrEqualTo(String value) {
+            addCriterion("collection_question <=", value, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionLike(String value) {
+            addCriterion("collection_question like", value, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionNotLike(String value) {
+            addCriterion("collection_question not like", value, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionIn(List<String> values) {
+            addCriterion("collection_question in", values, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionNotIn(List<String> values) {
+            addCriterion("collection_question not in", values, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionBetween(String value1, String value2) {
+            addCriterion("collection_question between", value1, value2, "collection_question");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollection_questionNotBetween(String value1, String value2) {
+            addCriterion("collection_question not between", value1, value2, "collection_question");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

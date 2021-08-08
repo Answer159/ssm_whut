@@ -53,6 +53,13 @@ public class UserInfoServiceImpl implements UserInfoService{
     public int update(UserInfo userInfo){
         return userInfoMapper.updateByPrimaryKey(userInfo);
     }
+
+    @Override
+    public List<UserInfo> search(String keyword){
+        UserInfoExample userInfoExample=new UserInfoExample();
+        userInfoExample.or().andUsernameLike("%"+keyword+"%");
+        return userInfoMapper.selectByExample(userInfoExample);
+    }
 }
 /**
  * @Author :wzh

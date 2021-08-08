@@ -1,4 +1,5 @@
 package cn.wmyskxz.service;
+import cn.wmyskxz.mapper.QuestionMapper;
 import cn.wmyskxz.pojo.Comment;
 import cn.wmyskxz.mapper.CommentMapper;
 import cn.wmyskxz.pojo.CommentExample;
@@ -10,6 +11,8 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService{
     @Autowired
     CommentMapper commentMapper;
+    @Autowired
+    QuestionMapper questionMapper;
     @Override
     public List<Comment> listByUser(Integer user_id){
         CommentExample example=new CommentExample();
@@ -17,16 +20,9 @@ public class CommentServiceImpl implements CommentService{
         return commentMapper.selectByExample(example);
     }
     @Override
-    public List<Comment> listByClass(Integer class_id){
-        CommentExample example=new CommentExample();
-        example.or().andClass_idEqualTo(class_id);
-        return commentMapper.selectByExample(example);
-    }
-    @Override
     public void delete(Integer id){
         Comment comment=get(id);
         comment.setQuestion_id(-1);
-        comment.setClass_id(-1);
         update(comment);
 
     }
@@ -41,7 +37,7 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Integer getCount(Integer product_id) {
-        return listByClass(product_id).size();
+        return listByQuestion(product_id).size();
     }
 
     @Override

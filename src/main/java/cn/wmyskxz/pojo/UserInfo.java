@@ -15,6 +15,10 @@ public class UserInfo {
 
     private String account;
 
+    private String collection_class;
+
+    private String collection_question;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +73,21 @@ public class UserInfo {
 
     public void setAccount(String account) {
         this.account = account == null ? null : account.trim();
+    }
+
+    public String getCollection_class() {
+        return collection_class;
+    }
+
+    public void setCollection_class(String collection_class) {
+        this.collection_class = collection_class == null ? null : collection_class.trim();
+    }
+
+    public String getCollection_question() {
+        return collection_question;
+    }
+
+    public void setCollection_question(String collection_question) {
+        this.collection_question = collection_question == null ? null : collection_question.trim();
     }
 }

@@ -23,6 +23,10 @@ public class Question {
 
     private Integer statu;
 
+    private Integer like_;
+
+    private Integer commentNum;
+
     public Integer getId() {
         return id;
     }
@@ -109,5 +113,21 @@ public class Question {
 
     public void setStatu(Integer statu) {
         this.statu = statu;
+    }
+
+    public Integer getLike_() {
+        return like_;
+    }
+
+    public void setLike_(Integer like_) {
+        this.like_ = like_;
+    }
+
+    public Integer getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(Integer commentNum) {
+        this.commentNum = commentNum;
     }
 }

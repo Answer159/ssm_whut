@@ -9,12 +9,7 @@ public interface CommentService {
      */
     List<Comment> listByUser(Integer user_id);
 
-    /**
-     * 根据课程id获取该课程下的所有评论
-     * @param class_id
-     * @return
-     */
-    List<Comment> listByClass(Integer class_id);
+
 
     /**
      * 根据id删除评论
@@ -34,7 +29,7 @@ public interface CommentService {
      * @return
      */
     Comment get(Integer id);
-
+//
     Integer getCount(Integer product_id);
 
     void update(Comment comment);

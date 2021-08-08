@@ -813,6 +813,126 @@ public class QuestionExample {
             addCriterion("statu not between", value1, value2, "statu");
             return (Criteria) this;
         }
+
+        public Criteria andLike_IsNull() {
+            addCriterion("like_ is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_IsNotNull() {
+            addCriterion("like_ is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_EqualTo(Integer value) {
+            addCriterion("like_ =", value, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_NotEqualTo(Integer value) {
+            addCriterion("like_ <>", value, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_GreaterThan(Integer value) {
+            addCriterion("like_ >", value, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_GreaterThanOrEqualTo(Integer value) {
+            addCriterion("like_ >=", value, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_LessThan(Integer value) {
+            addCriterion("like_ <", value, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_LessThanOrEqualTo(Integer value) {
+            addCriterion("like_ <=", value, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_In(List<Integer> values) {
+            addCriterion("like_ in", values, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_NotIn(List<Integer> values) {
+            addCriterion("like_ not in", values, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_Between(Integer value1, Integer value2) {
+            addCriterion("like_ between", value1, value2, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andLike_NotBetween(Integer value1, Integer value2) {
+            addCriterion("like_ not between", value1, value2, "like_");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumIsNull() {
+            addCriterion("commentNum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumIsNotNull() {
+            addCriterion("commentNum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumEqualTo(Integer value) {
+            addCriterion("commentNum =", value, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumNotEqualTo(Integer value) {
+            addCriterion("commentNum <>", value, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumGreaterThan(Integer value) {
+            addCriterion("commentNum >", value, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("commentNum >=", value, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumLessThan(Integer value) {
+            addCriterion("commentNum <", value, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumLessThanOrEqualTo(Integer value) {
+            addCriterion("commentNum <=", value, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumIn(List<Integer> values) {
+            addCriterion("commentNum in", values, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumNotIn(List<Integer> values) {
+            addCriterion("commentNum not in", values, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumBetween(Integer value1, Integer value2) {
+            addCriterion("commentNum between", value1, value2, "commentNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("commentNum not between", value1, value2, "commentNum");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

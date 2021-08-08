@@ -89,13 +89,13 @@
 <!--        </table>-->
 
 
-<!--        <table tableName="userInfo" domainObjectName="UserInfo" enableCountByExample="false"-->
-<!--               enableDeleteByExample="false" enableSelectByExample="true" enableUpdateByExample="false"-->
-<!--               selectByExampleQueryId="false">-->
-<!--            <property name="useActualColumnNames" value="true"/>-->
-<!--            <property name="my.isgen.usekeys" value="true"/>-->
-<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
-<!--        </table>-->
+        <table tableName="userInfo" domainObjectName="UserInfo" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="true" enableUpdateByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+            <property name="my.isgen.usekeys" value="true"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
 
 <!--        <table tableName="question" domainObjectName="Question" enableCountByExample="false"-->
 <!--               enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="false"-->
@@ -105,13 +105,13 @@
 <!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
 <!--        </table>-->
 
-        <table tableName="order_q" domainObjectName="Order_q" enableCountByExample="false"
-               enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="false"
-               selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="true"/>
-            <property name="my.isgen.usekeys" value="true"/>
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
+<!--        <table tableName="order_q" domainObjectName="Order_q" enableCountByExample="false"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="true"/>-->
+<!--            <property name="my.isgen.usekeys" value="true"/>-->
+<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+<!--        </table>-->
 <!--        <table tableName="classImageInfo" domainObjectName="ClassImageInfo" enableCountByExample="false"-->
 <!--               enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="false"-->
 <!--               selectByExampleQueryId="false">-->
@@ -138,6 +138,14 @@
 <!--        </table>-->
 
 <!--        <table tableName="questionVideoInfo" domainObjectName="QuestionVideoInfo" enableCountByExample="false"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--            <property name="useActualColumnNames" value="true"/>-->
+<!--            <property name="my.isgen.usekeys" value="true"/>-->
+<!--            <generatedKey column="id" sqlStatement="JDBC"/>-->
+<!--        </table>-->
+
+<!--        <table tableName="evaluation" domainObjectName="Evaluation" enableCountByExample="false"-->
 <!--               enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="false"-->
 <!--               selectByExampleQueryId="false">-->
 <!--            <property name="useActualColumnNames" value="true"/>-->

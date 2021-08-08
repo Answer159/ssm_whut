@@ -6,6 +6,8 @@ import cn.wmyskxz.pojo.Question;
 import cn.wmyskxz.pojo.UserInfo;
 import cn.wmyskxz.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,7 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Controller
+@CrossOrigin
 public class PageController {
     @Autowired
     CategoryService categoryService;
@@ -79,6 +82,19 @@ public class PageController {
         map.put("question",question);
         map.put("category",category);
         map.put("categories",categories);
+        return map;
+    }
+    @RequestMapping("/editUserPage")
+    @ResponseBody
+    public Map editUserPage(UserInfo userInfo,HttpSession session){
+        UserInfo userInfo1=(UserInfo) session.getAttribute("userInfo");
+        Map map=new HashMap();
+        if(userInfo1.getId()==userInfo.getId()){
+            userInfoService.update(userInfo);
+            map.put("msg","success");
+            return map;
+        }
+        map.put("msg","fail");
         return map;
     }
 }

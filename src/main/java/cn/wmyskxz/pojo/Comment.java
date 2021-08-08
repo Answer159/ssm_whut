@@ -9,11 +9,15 @@ public class Comment {
 
     private Integer use_id;
 
-    private Integer class_id;
-
     private Date createDate;
 
     private Integer question_id;
+
+    private Integer replay_id;
+
+    private Integer like_;
+
+    private Integer replayNum;
 
     public Integer getId() {
         return id;
@@ -39,14 +43,6 @@ public class Comment {
         this.use_id = use_id;
     }
 
-    public Integer getClass_id() {
-        return class_id;
-    }
-
-    public void setClass_id(Integer class_id) {
-        this.class_id = class_id;
-    }
-
     public Date getCreateDate() {
         return createDate;
     }
@@ -61,5 +57,29 @@ public class Comment {
 
     public void setQuestion_id(Integer question_id) {
         this.question_id = question_id;
+    }
+
+    public Integer getReplay_id() {
+        return replay_id;
+    }
+
+    public void setReplay_id(Integer replay_id) {
+        this.replay_id = replay_id;
+    }
+
+    public Integer getLike_() {
+        return like_;
+    }
+
+    public void setLike_(Integer like_) {
+        this.like_ = like_;
+    }
+
+    public Integer getReplayNum() {
+        return replayNum;
+    }
+
+    public void setReplayNum(Integer replayNum) {
+        this.replayNum = replayNum;
     }
 }

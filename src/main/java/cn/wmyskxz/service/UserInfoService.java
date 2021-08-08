@@ -36,4 +36,6 @@ public interface UserInfoService {
     int  add(UserInfo user);
 
     int update(UserInfo user);
+
+    List<UserInfo> search(String keyword);
 }

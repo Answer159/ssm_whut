@@ -13,6 +13,8 @@
     <result column="tools" jdbcType="NVARCHAR" property="tools" />
     <result column="question_content" jdbcType="NVARCHAR" property="question_content" />
     <result column="statu" jdbcType="INTEGER" property="statu" />
+    <result column="like_" jdbcType="INTEGER" property="like_" />
+    <result column="commentNum" jdbcType="INTEGER" property="commentNum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -45,7 +47,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, domain_id, title, price, suggestTime, textIntro, use_id, front_knowledge, tools, 
-    question_content, statu
+    question_content, statu, like_, commentNum
   </sql>
   <select id="selectByExample" parameterType="cn.wmyskxz.pojo.QuestionExample" resultMap="BaseResultMap">
     select
@@ -82,11 +84,13 @@
     insert into question (domain_id, title, price, 
       suggestTime, textIntro, use_id, 
       front_knowledge, tools, question_content, 
-      statu)
+      statu, like_, commentNum
+      )
     values (#{domain_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
       #{suggestTime,jdbcType=DOUBLE}, #{textIntro,jdbcType=VARCHAR}, #{use_id,jdbcType=INTEGER}, 
       #{front_knowledge,jdbcType=NVARCHAR}, #{tools,jdbcType=NVARCHAR}, #{question_content,jdbcType=NVARCHAR}, 
-      #{statu,jdbcType=INTEGER})
+      #{statu,jdbcType=INTEGER}, #{like_,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.Question" useGeneratedKeys="true">
     insert into question
@@ -121,6 +125,12 @@
       <if test="statu != null">
         statu,
       </if>
+      <if test="like_ != null">
+        like_,
+      </if>
+      <if test="commentNum != null">
+        commentNum,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="domain_id != null">
@@ -152,6 +162,12 @@
       </if>
       <if test="statu != null">
         #{statu,jdbcType=INTEGER},
+      </if>
+      <if test="like_ != null">
+        #{like_,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -188,6 +204,12 @@
       <if test="statu != null">
         statu = #{statu,jdbcType=INTEGER},
       </if>
+      <if test="like_ != null">
+        like_ = #{like_,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        commentNum = #{commentNum,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -202,7 +224,9 @@
       front_knowledge = #{front_knowledge,jdbcType=NVARCHAR},
       tools = #{tools,jdbcType=NVARCHAR},
       question_content = #{question_content,jdbcType=NVARCHAR},
-      statu = #{statu,jdbcType=INTEGER}
+      statu = #{statu,jdbcType=INTEGER},
+      like_ = #{like_,jdbcType=INTEGER},
+      commentNum = #{commentNum,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

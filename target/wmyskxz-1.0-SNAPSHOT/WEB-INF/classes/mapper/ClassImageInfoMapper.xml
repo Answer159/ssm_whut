@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.wmyskxz.pojo.ClassImageInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="classInfo_id" jdbcType="INTEGER" property="classInfo_id" />
+    <result column="statu" jdbcType="INTEGER" property="statu" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -35,7 +36,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, classInfo_id
+    id, classInfo_id, statu
   </sql>
   <select id="selectByExample" parameterType="cn.wmyskxz.pojo.ClassImageInfoExample" resultMap="BaseResultMap">
     select
@@ -69,8 +70,8 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.ClassImageInfo" useGeneratedKeys="true">
-    insert into ClassImageInfo (classInfo_id)
-    values (#{classInfo_id,jdbcType=INTEGER})
+    insert into ClassImageInfo (classInfo_id, statu)
+    values (#{classInfo_id,jdbcType=INTEGER}, #{statu,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.ClassImageInfo" useGeneratedKeys="true">
     insert into ClassImageInfo
@@ -78,10 +79,16 @@
       <if test="classInfo_id != null">
         classInfo_id,
       </if>
+      <if test="statu != null">
+        statu,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="classInfo_id != null">
         #{classInfo_id,jdbcType=INTEGER},
+      </if>
+      <if test="statu != null">
+        #{statu,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -91,12 +98,16 @@
       <if test="classInfo_id != null">
         classInfo_id = #{classInfo_id,jdbcType=INTEGER},
       </if>
+      <if test="statu != null">
+        statu = #{statu,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wmyskxz.pojo.ClassImageInfo">
     update ClassImageInfo
-    set classInfo_id = #{classInfo_id,jdbcType=INTEGER}
+    set classInfo_id = #{classInfo_id,jdbcType=INTEGER},
+      statu = #{statu,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

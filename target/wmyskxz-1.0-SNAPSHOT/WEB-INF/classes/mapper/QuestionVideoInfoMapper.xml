@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.wmyskxz.pojo.QuestionVideoInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="question_id" jdbcType="INTEGER" property="question_id" />
+    <result column="statu" jdbcType="INTEGER" property="statu" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -35,7 +36,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, question_id
+    id, question_id, statu
   </sql>
   <select id="selectByExample" parameterType="cn.wmyskxz.pojo.QuestionVideoInfoExample" resultMap="BaseResultMap">
     select
@@ -69,8 +70,8 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.QuestionVideoInfo" useGeneratedKeys="true">
-    insert into QuestionVideoInfo (question_id)
-    values (#{question_id,jdbcType=INTEGER})
+    insert into QuestionVideoInfo (question_id, statu)
+    values (#{question_id,jdbcType=INTEGER}, #{statu,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.QuestionVideoInfo" useGeneratedKeys="true">
     insert into QuestionVideoInfo
@@ -78,10 +79,16 @@
       <if test="question_id != null">
         question_id,
       </if>
+      <if test="statu != null">
+        statu,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="question_id != null">
         #{question_id,jdbcType=INTEGER},
+      </if>
+      <if test="statu != null">
+        #{statu,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -91,12 +98,16 @@
       <if test="question_id != null">
         question_id = #{question_id,jdbcType=INTEGER},
       </if>
+      <if test="statu != null">
+        statu = #{statu,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wmyskxz.pojo.QuestionVideoInfo">
     update QuestionVideoInfo
-    set question_id = #{question_id,jdbcType=INTEGER}
+    set question_id = #{question_id,jdbcType=INTEGER},
+      statu = #{statu,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
