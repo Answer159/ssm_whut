@@ -417,12 +417,29 @@ public class ForeController {
 		//classInfoService.fillByRow(categories);
 		List<Referal_Link> links = referalLinkService.listAll();
 		List<ClassInfo> classInfos=classInfoService.listByCategory(1);
+		List<ClassInfo> classInfos1=new ArrayList<>();
+		List<UserInfo> userInfos=userInfoService.list();
+		List<UserInfo> userInfos1=new ArrayList<>();
+		int count=0;
+		for(ClassInfo classInfo:classInfos){
+			if(count>10){
+				break;
+			}
+			classInfos1.add(classInfo);
+		}
+		count=0;
+		for(UserInfo userInfo:userInfos){
+			if(count>10){
+				break;
+			}
+			userInfos1.add(userInfo);
+		}
 
 		Map map=new HashMap();
 		map.put("categories",categories);
 		map.put("links",links);
-		map.put("classInfos",classInfos);
-
+		map.put("classInfos",classInfos1);
+		map.put("userInfos",userInfos1);
 		return map;
 	}
 
