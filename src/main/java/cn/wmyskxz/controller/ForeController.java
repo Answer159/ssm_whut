@@ -456,6 +456,7 @@ public class ForeController {
 		}
 		map.put("msg","success");
 		session.setAttribute("userInfo", userInfo);
+		map.put("userInfo",userInfo);
 		return map;
 	}
 
