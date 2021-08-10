@@ -416,7 +416,7 @@ public class ForeController {
 		//classInfoService.fill(categories);
 		//classInfoService.fillByRow(categories);
 		List<Referal_Link> links = referalLinkService.listAll();
-		List<ClassInfo> classInfos=classInfoService.listByCategory(1);
+		List<ClassInfo> classInfos=classInfoService.list();
 		List<ClassInfo> classInfos1=new ArrayList<>();
 		List<UserInfo> userInfos=userInfoService.list();
 		List<UserInfo> userInfos1=new ArrayList<>();
@@ -456,6 +456,7 @@ public class ForeController {
 		}
 		map.put("msg","success");
 		session.setAttribute("userInfo", userInfo);
+		map.put("userInfo",userInfo);
 		return map;
 	}
 
@@ -516,7 +517,7 @@ public class ForeController {
 	@RequestMapping("/listCommentByQuestion")
 	@ResponseBody
 	@ApiOperation(value = "列出提问的评论")
-	public Map listCommentByQuestion(Integer question_id)
+	public Map listCommentByQuestion(Integer question_id,int pageNum)
 	{
 		List<Comment> commentList=commentService.listByQuestion(question_id);
 
@@ -533,10 +534,13 @@ public class ForeController {
 
 		Map map=new HashMap();
 		map.put("pageSize",pages);                //先记录页码数
-
+		map.put("resultNum",commentList.size());
 		Integer pageC=pageCount;                  //默认当前页显示最大量数据
 		for(int page=0;page<pages;page++)
 		{
+			if(page!=pageNum-1){
+				continue;
+			}
 			List<Comment> pageList=new ArrayList<>();
 			List<UserInfo> authorList=new ArrayList<>();
 			if(page==pages-1)                     //最后一页更改至相应的量
@@ -550,6 +554,7 @@ public class ForeController {
 			}
 			map.put("pageList"+Integer.toString(page+1),pageList);
 			map.put("authorList"+Integer.toString(page+1),authorList);
+			break;
 		}
 
 		return map;
@@ -558,7 +563,7 @@ public class ForeController {
 	@RequestMapping("/listCommentByUser")
 	@ResponseBody
 	@ApiOperation(value = "列出用户的所有评论")
-	public Map listCommentByUser(Integer user_id)
+	public Map listCommentByUser(Integer user_id,int pageNum)
 	{
 		List<Comment> commentList=commentService.listByUser(user_id);
 		Integer commentCount=commentService.getCount(user_id);
@@ -576,11 +581,14 @@ public class ForeController {
 
 		Map map=new HashMap();
 		map.put("pageSize",pages);                //先记录页码数
-
+		map.put("resultNum",commentList.size());
 
 		Integer pageC=pageCount;                  //默认当前页显示最大量数据
 		for(int page=0;page<pages;page++)
 		{
+			if(page!=pageNum-1){
+				continue;
+			}
 			List<Comment> pageList=new ArrayList<>();
 			List<UserInfo> authorList=new ArrayList<>();
 			if(page==pages-1)                     //最后一页更改至相应的量
@@ -594,7 +602,7 @@ public class ForeController {
 			}
 			map.put("pageList"+ (page + 1),pageList);
 			map.put("authorList"+ (page + 1),authorList);
-
+			break;
 		}
 
 		return map;
@@ -604,7 +612,7 @@ public class ForeController {
 	@RequestMapping("/listOrder_ByClient")
 	@ResponseBody
 	@ApiOperation(value = "列出用户买的所有订单")
-	public Map listOrder_ByClient(Integer user_id)
+	public Map listOrder_ByClient(Integer user_id,int pageNum)
 	{
 		List<Order_> order_s=orderService.listByBuyer(user_id);
 
@@ -620,10 +628,13 @@ public class ForeController {
 
 		Map map=new HashMap();
 		map.put("pageSize",pages);
-
+		map.put("resultNum",order_s.size());
 		Integer pageC=pageCount;
 		for(int page=0;page<pages;page++)
 		{
+			if(page!=pageNum-1){
+				continue;
+			}
 			List<Order_> pageList=new ArrayList<>();
 			List<UserInfo> buyerList=new ArrayList<>();
 			List<UserInfo> sellerList=new ArrayList<>();
@@ -639,6 +650,7 @@ public class ForeController {
 			map.put("pageList"+ (page + 1),pageList);
 			map.put("buyerList"+ (page + 1),buyerList);
 			map.put("sellerList"+ (page + 1),sellerList);
+			break;
 		}
 
 		return map;
@@ -646,7 +658,7 @@ public class ForeController {
 	@RequestMapping("/listOrder_BySeller")
 	@ResponseBody
 	@ApiOperation(value = "列出用户卖的所有订单")
-	public Map listOrder_BySeller(Integer seller_id)
+	public Map listOrder_BySeller(Integer seller_id,int pageNum)
 	{
 		List<Order_> order_s=orderService.listBySeller(seller_id);
 
@@ -662,10 +674,13 @@ public class ForeController {
 
 		Map map=new HashMap();
 		map.put("pageSize",pages);
-
+		map.put("resultNum",order_s.size());
 		Integer pageC=pageCount;
 		for(int page=0;page<pages;page++)
 		{
+			if(page!=pageNum-1){
+				continue;
+			}
 			List<Order_> pageList=new ArrayList<>();
 			List<UserInfo> buyerList=new ArrayList<>();
 			List<UserInfo> sellerList=new ArrayList<>();
@@ -681,6 +696,7 @@ public class ForeController {
 			map.put("pageList"+ (page + 1),pageList);
 			map.put("buyerList"+ (page + 1),buyerList);
 			map.put("sellerList"+ (page + 1),sellerList);
+			break;
 		}
 
 		return map;
@@ -689,7 +705,7 @@ public class ForeController {
 	@RequestMapping("/listOrder_qBySeller")
 	@ResponseBody
 	@ApiOperation(value = "列出用户卖的提问订单")
-	public Map listOrder_qBySeller(Integer seller_id)
+	public Map listOrder_qBySeller(Integer seller_id,int pageNum)
 	{
 		List<Order_q> order_q=order_qService.listBySeller(seller_id);
 
@@ -705,10 +721,13 @@ public class ForeController {
 
 		Map map=new HashMap();
 		map.put("pageSize",pages);
-
+		map.put("resultNum",order_q.size());
 		Integer pageC=pageCount;
 		for(int page=0;page<pages;page++)
 		{
+			if(page!=pageNum-1){
+				continue;
+			}
 			List<Order_q> pageList=new ArrayList<>();
 			List<UserInfo> buyerList=new ArrayList<>();
 			List<UserInfo> sellerList=new ArrayList<>();
@@ -724,6 +743,7 @@ public class ForeController {
 			map.put("pageList"+ (page + 1),pageList);
 			map.put("buyerList"+ (page + 1),buyerList);
 			map.put("sellerList"+ (page + 1),sellerList);
+			break;
 		}
 
 		return map;
@@ -732,7 +752,7 @@ public class ForeController {
 	@RequestMapping("/listOrder_qByBuyer")
 	@ResponseBody
 	@ApiOperation(value = "列出用户买的提问订单")
-	public Map listOrder_qByBuyer(Integer user_id)
+	public Map listOrder_qByBuyer(Integer user_id,int pageNum)
 	{
 		List<Order_> order_s=orderService.listByBuyer(user_id);
 
@@ -748,10 +768,13 @@ public class ForeController {
 
 		Map map=new HashMap();
 		map.put("pageSize",pages);
-
+		map.put("resultNum",order_s.size());
 		Integer pageC=pageCount;
 		for(int page=0;page<pages;page++)
 		{
+			if(page!=pageNum-1){
+				continue;
+			}
 			List<Order_> pageList=new ArrayList<>();
 			List<UserInfo> buyerList=new ArrayList<>();
 			List<UserInfo> sellerList=new ArrayList<>();
@@ -767,6 +790,7 @@ public class ForeController {
 			map.put("pageList"+ (page + 1),pageList);
 			map.put("buyerList"+ (page + 1),buyerList);
 			map.put("sellerList"+ (page + 1),sellerList);
+			break;
 		}
 
 		return map;
@@ -775,7 +799,7 @@ public class ForeController {
 	@RequestMapping("/listQuestionByKeyWord")
 	@ResponseBody
 	@ApiOperation(value = "关键词搜索提问")
-	public Map listQuestionByKeyWord(String keyword)
+	public Map listQuestionByKeyWord(String keyword,int pageNum)
 	{
 		List<Question> questionList=questionService.search(keyword);
 
@@ -790,11 +814,14 @@ public class ForeController {
 
 
 		Map map=new HashMap();
-		map.put("pageSize",pages);
-
+		map.put("pageSize",pages-1);
+		map.put("resultNum",questionList.size());
 		Integer pageC=pageCount;
 		for(int page=0;page<pages;page++)
 		{
+			if(page!=pageNum){
+				continue;
+			}
 			List<Question> pageList=new ArrayList<>();
 			List<UserInfo> authorList=new ArrayList<>();
 			if(page==pages-1) {
@@ -807,6 +834,7 @@ public class ForeController {
 			}
 			map.put("pageList"+ (page + 1),pageList);
 			map.put("authorList"+ (page + 1),authorList);
+			break;
 		}
 
 		return map;
@@ -815,7 +843,7 @@ public class ForeController {
 	@RequestMapping("/listQuestionByUser")
 	@ResponseBody
 	@ApiOperation(value = "列出用户发布的所有提问")
-	public Map listQuestionByUser(Integer user_id)
+	public Map listQuestionByUser(Integer user_id,int pageNum)
 	{
 		List<Question> questionList=questionService.listByUser(user_id);
 
@@ -829,11 +857,14 @@ public class ForeController {
 		pages++;
 
 		Map map=new HashMap();
-		map.put("pageSize",pages);
-
+		map.put("pageSize",pages-1);
+		map.put("resultNum",questionList.size());
 		Integer pageC=pageCount;
 		for(int page=0;page<pages;page++)
 		{
+			if(page!=pageNum-1){
+				continue;
+			}
 			List<Question> pageList=new ArrayList<>();
 			List<UserInfo> authorList=new ArrayList<>();
 			if(page==pages-1) {
@@ -844,8 +875,9 @@ public class ForeController {
 				pageList.add(questionList.get(page*pageCount+count));
 				authorList.add(userInfoService.get(questionList.get(page*pageCount+count).getUse_id()));
 			}
-			map.put("page"+Integer.toString(page+1),pageList);
-			map.put("authorList"+Integer.toString(page+1),authorList);
+			map.put("page"+ (page + 1),pageList);
+			map.put("authorList"+ (page + 1),authorList);
+			break;
 		}
 
 		return map;
@@ -1413,15 +1445,60 @@ public class ForeController {
 
 	}
 
+	@RequestMapping("/sortQuestion")
+	@ResponseBody
+	@ApiOperation(value = "求助排序")
+	public Map sortQuestion(@RequestParam("sort") String sort,
+							 @RequestParam("keyword") String keyword,int pageNum) {
+		List<Question> questions = questionService.search(keyword);
+		Map map=new HashMap();
+		int page=questions.size()/10;
+		int lastPage=questions.size()%10;
+		if (null != sort) {
+			switch (sort) {
+				case "suggestTime":
+					Collections.sort(questions, Comparator.comparing(Question::getSuggestTime));
+					break;
 
+				case "price":
+					Collections.sort(questions, Comparator.comparing(Question::getPrice));
+					break;
+			}
+		}
+		if(lastPage!=0){
+			page++;
+		}
+		for(int i=0;i<page;i++){
+			if(i!=pageNum-1){
+				continue;
+			}
+			List<Question> questions1=new ArrayList<>();
+			int num=10;
+			if(i==page-1&&lastPage!=0){
+				num=lastPage;
+			}
+			for(int j=0;j<num;j++){
+
+				questions1.add(questions.get(i*10+j));
+			}
+			//classInfoss.add(classInfos1);
+			map.put("questions",questions1);
+			map.put("pages",page);
+			break;
+		}
+
+		return map;
+	}
 	//last:6-16
 	@RequestMapping("/sortClassInfo")
 	@ResponseBody
-	@ApiOperation(value = "排序")
+	@ApiOperation(value = "课程排序")
 	public Map sortClassInfo(@RequestParam("sort") String sort,
-							 @RequestParam("keyword") String keyword) {
+							 @RequestParam("keyword") String keyword,int pageNum) {
 		List<ClassInfo> classInfos = classInfoService.search(keyword);
-
+		Map map=new HashMap();
+		int page=classInfos.size()/10;
+		int lastPage=classInfos.size()%10;
 		if (null != sort) {
 			switch (sort) {
 				case "suggestTime":
@@ -1433,8 +1510,27 @@ public class ForeController {
 					break;
 			}
 		}
-		Map map=new HashMap();
-		map.put("classInfos",classInfos);
+		if(lastPage!=0){
+			page++;
+		}
+		for(int i=0;i<page;i++){
+			if(i!=pageNum-1){
+				continue;
+			}
+			List<ClassInfo> classInfos1=new ArrayList<>();
+			int num=10;
+			if(i==page-1&&lastPage!=0){
+				num=lastPage;
+			}
+			for(int j=0;j<num;j++){
+
+				classInfos1.add(classInfos.get(i*10+j));
+			}
+			//classInfoss.add(classInfos1);
+			map.put("classInfos",classInfos1);
+			map.put("pages",page);
+			break;
+		}
 
 		return map;
 	}
@@ -1443,20 +1539,37 @@ public class ForeController {
 	@RequestMapping("/searchClassInfo")
 	@ResponseBody
 	@ApiOperation(value = "根据关键词搜索课程")
-	public Map searchClassInfo(@RequestParam("keyword") String keyword) {
+	public Map searchClassInfo(@RequestParam("keyword") String keyword,int pageNum) {
 		List<ClassInfo> classInfos = classInfoService.search(keyword);
-		List<List<ClassInfo>> classInfoss=new ArrayList<>();
-		int page=classInfos.size();
-		for(int i=0;i<page;i++){
-			List<ClassInfo> classInfos1=new ArrayList<>();
-			for(int j=0;j<10;j++){
-				classInfos1.add(classInfos.get(i*10+j));
-			}
-			classInfoss.add(classInfos1);
-		}
 		Map map=new HashMap();
-		map.put("classInfos",classInfoss);
-		map.put("pages",page);
+		//List<List<ClassInfo>> classInfoss=new ArrayList<>();
+		int page=classInfos.size()/10;
+		int lastPage=classInfos.size()%10;
+		if(lastPage!=0){
+			page++;
+		}
+		for(int i=0;i<page;i++){
+			if(i!=pageNum-1){
+				continue;
+			}
+			List<ClassInfo> classInfos1=new ArrayList<>();
+			List<UserInfo> userInfos=new ArrayList<>();
+			int num=10;
+			if(i==page-1&&lastPage!=0){
+				num=lastPage;
+			}
+			for(int j=0;j<num;j++){
+				ClassInfo classInfo=classInfos.get(i*10+j);
+				classInfos1.add(classInfo);
+				userInfos.add(userInfoService.get(classInfo.getUse_id()));
+			}
+			//classInfoss.add(classInfos1);
+			map.put("resultNum",classInfos.size());
+			map.put("classInfos",classInfos1);
+			map.put("userInfos",userInfos);
+			map.put("pages",page);
+			break;
+		}
 		return map;
 	}
 
