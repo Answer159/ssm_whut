@@ -33,7 +33,7 @@ public class ClassImageInfoServiceImpl implements ClassImageInfoService{
     @Override
     public List<ClassImageInfo> list(Integer class_id){
         ClassImageInfoExample classImageInfoExample=new ClassImageInfoExample();
-        classImageInfoExample.or().andClassInfo_idEqualTo(class_id);
+        classImageInfoExample.or().andClassInfo_idEqualTo(class_id).andStatuEqualTo(1);
         return classImageInfoMapper.selectByExample(classImageInfoExample);
     }
     @Override

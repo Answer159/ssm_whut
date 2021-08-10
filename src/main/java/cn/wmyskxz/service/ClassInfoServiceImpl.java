@@ -40,14 +40,14 @@ public class ClassInfoServiceImpl implements ClassInfoService{
     @Override
     public List<ClassInfo> listByCategory(Integer category_id) {
         ClassInfoExample example=new ClassInfoExample();
-        example.or().andDomain_idEqualTo(category_id).andStatuEqualTo(0);
+        example.or().andDomain_idEqualTo(category_id).andStatuEqualTo(1);
         return classInfoMapper.selectByExample(example);
     }
 
     @Override
     public List<ClassInfo> search(String keyword) {
         ClassInfoExample example=new ClassInfoExample();
-        example.or().andTitleLike("%"+keyword+"%").andStatuEqualTo(0);
+        example.or().andTitleLike("%"+keyword+"%").andStatuEqualTo(1);
         example.setOrderByClause("id desc");
         return classInfoMapper.selectByExample(example);
 

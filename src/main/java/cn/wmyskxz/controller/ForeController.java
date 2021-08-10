@@ -77,6 +77,60 @@ public class ForeController {
 	@Autowired
 	EvaluationService evaluationService;
 
+	@RequestMapping("/cancelCollectClass")
+	@ResponseBody
+	@ApiOperation(value = "取消收藏课程")
+	public Map cancelCollectClass(Integer id,HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		Map map=new HashMap();
+		String collection=userInfo.getCollection_class();
+		String sub= id +"&";
+		String newCollection=deleteString(collection,sub);
+		if("error".equals(newCollection)){
+			map.put("msg","没有这个收藏");
+			return map;
+		}
+		userInfo.setCollection_class(newCollection);
+		userInfoService.update(userInfo);
+		map.put("msg","success");
+		return map;
+	}
+	@RequestMapping("/cancelCollectQuestion")
+	@ResponseBody
+	@ApiOperation(value = "取消收藏求助")
+	public Map cancelCollectQuestion(Integer id,HttpSession session){
+		UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+		Map map=new HashMap();
+		String collection=userInfo.getCollection_question();
+		String sub= id +"&";
+		String newCollection=deleteString(collection,sub);
+		if("error".equals(newCollection)){
+			map.put("msg","没有这个收藏");
+			return map;
+		}
+		userInfo.setCollection_question(newCollection);
+		userInfoService.update(userInfo);
+		map.put("msg","success");
+		return map;
+	}
+	public String deleteString(String string,String sub){
+		int index=string.indexOf(sub);
+		int subLength=sub.length();
+		String str="";
+		if(index!=-1){
+			for(int i=0;i<string.length();i++){
+				if(i>=index&&i<index+subLength){
+					continue;
+				}
+				str+=string.charAt(i);
+			}
+			if(str.length() == 0){
+				str=null;
+			}
+			return str;
+		}
+		return "error";
+	}
 	@RequestMapping("/checkLogin")
 	@ResponseBody
 	@ApiOperation(value = "检查登录")
