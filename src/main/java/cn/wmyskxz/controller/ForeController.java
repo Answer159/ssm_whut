@@ -1099,8 +1099,8 @@ public class ForeController {
 	public Map postQuestion(@RequestBody Question question,
 							   HttpSession session,
 							   HttpServletRequest request,
-							   List<MultipartFile> pictures,
-							   List<MultipartFile> videos){
+                               MultipartFile[] pictures,
+                               MultipartFile[] videos){
 		UserInfo userInfo=(UserInfo) session.getAttribute("userInfo");
 
 
@@ -1133,8 +1133,8 @@ public class ForeController {
 	public Map postClassInfo(@RequestBody ClassInfo classInfo,
 							 HttpSession session,
 							 HttpServletRequest request,
-							 List<MultipartFile> pictures,
-							 List<MultipartFile> videos){
+                             MultipartFile[] pictures,
+                             MultipartFile[] videos){
 		UserInfo userInfo=(UserInfo) session.getAttribute("userInfo");
 
 
@@ -1236,7 +1236,7 @@ public class ForeController {
 //		return map;
 //	}
 
-	public boolean postImage(HttpServletRequest request, List<MultipartFile> pictures, int class_id, int type){
+	public boolean postImage(HttpServletRequest request, MultipartFile[] pictures, int class_id, int type){
 		String filePath;
 		if(type==0){
 			filePath = request.getSession().getServletContext()
@@ -1267,7 +1267,7 @@ public class ForeController {
 		return true;
 	}
 
-	public boolean postVideo(HttpServletRequest request,List<MultipartFile> videos,int class_id,int type){
+	public boolean postVideo(HttpServletRequest request,MultipartFile[] videos,int class_id,int type){
 		String filePath;
 		if(type==0){
 			filePath = request.getSession().getServletContext()
@@ -1702,7 +1702,7 @@ public class ForeController {
 	public Map updateImage(HttpSession session,
 						   Integer flag,
 						   HttpServletRequest request,
-						   List<MultipartFile> pictures,
+                           MultipartFile[] pictures,
 						   Integer class_id){
 		Map map=new HashMap();
 		UserInfo userInfo=(UserInfo)session.getAttribute("UserInfo");
@@ -1725,7 +1725,7 @@ public class ForeController {
 	public Map updateVideo(HttpSession session,
 						   Integer flag,
 						   HttpServletRequest request,
-						   List<MultipartFile> videos,
+                           MultipartFile[] videos,
 						   Integer class_id){
 		Map map=new HashMap();
 		UserInfo userInfo=(UserInfo)session.getAttribute("UserInfo");
