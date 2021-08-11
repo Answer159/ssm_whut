@@ -295,66 +295,6 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateDateIsNull() {
-            addCriterion("createDate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateIsNotNull() {
-            addCriterion("createDate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateEqualTo(Date value) {
-            addCriterion("createDate =", value, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateNotEqualTo(Date value) {
-            addCriterion("createDate <>", value, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateGreaterThan(Date value) {
-            addCriterion("createDate >", value, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateGreaterThanOrEqualTo(Date value) {
-            addCriterion("createDate >=", value, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateLessThan(Date value) {
-            addCriterion("createDate <", value, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateLessThanOrEqualTo(Date value) {
-            addCriterion("createDate <=", value, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateIn(List<Date> values) {
-            addCriterion("createDate in", values, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateNotIn(List<Date> values) {
-            addCriterion("createDate not in", values, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateBetween(Date value1, Date value2) {
-            addCriterion("createDate between", value1, value2, "createDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateDateNotBetween(Date value1, Date value2) {
-            addCriterion("createDate not between", value1, value2, "createDate");
-            return (Criteria) this;
-        }
-
         public Criteria andQuestion_idIsNull() {
             addCriterion("question_id is null");
             return (Criteria) this;
@@ -415,63 +355,63 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idIsNull() {
-            addCriterion("replay_id is null");
+        public Criteria andCreateDateIsNull() {
+            addCriterion("createDate is null");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idIsNotNull() {
-            addCriterion("replay_id is not null");
+        public Criteria andCreateDateIsNotNull() {
+            addCriterion("createDate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idEqualTo(Integer value) {
-            addCriterion("replay_id =", value, "replay_id");
+        public Criteria andCreateDateEqualTo(Date value) {
+            addCriterion("createDate =", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idNotEqualTo(Integer value) {
-            addCriterion("replay_id <>", value, "replay_id");
+        public Criteria andCreateDateNotEqualTo(Date value) {
+            addCriterion("createDate <>", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idGreaterThan(Integer value) {
-            addCriterion("replay_id >", value, "replay_id");
+        public Criteria andCreateDateGreaterThan(Date value) {
+            addCriterion("createDate >", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idGreaterThanOrEqualTo(Integer value) {
-            addCriterion("replay_id >=", value, "replay_id");
+        public Criteria andCreateDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("createDate >=", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idLessThan(Integer value) {
-            addCriterion("replay_id <", value, "replay_id");
+        public Criteria andCreateDateLessThan(Date value) {
+            addCriterion("createDate <", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idLessThanOrEqualTo(Integer value) {
-            addCriterion("replay_id <=", value, "replay_id");
+        public Criteria andCreateDateLessThanOrEqualTo(Date value) {
+            addCriterion("createDate <=", value, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idIn(List<Integer> values) {
-            addCriterion("replay_id in", values, "replay_id");
+        public Criteria andCreateDateIn(List<Date> values) {
+            addCriterion("createDate in", values, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idNotIn(List<Integer> values) {
-            addCriterion("replay_id not in", values, "replay_id");
+        public Criteria andCreateDateNotIn(List<Date> values) {
+            addCriterion("createDate not in", values, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idBetween(Integer value1, Integer value2) {
-            addCriterion("replay_id between", value1, value2, "replay_id");
+        public Criteria andCreateDateBetween(Date value1, Date value2) {
+            addCriterion("createDate between", value1, value2, "createDate");
             return (Criteria) this;
         }
 
-        public Criteria andReplay_idNotBetween(Integer value1, Integer value2) {
-            addCriterion("replay_id not between", value1, value2, "replay_id");
+        public Criteria andCreateDateNotBetween(Date value1, Date value2) {
+            addCriterion("createDate not between", value1, value2, "createDate");
             return (Criteria) this;
         }
 
@@ -592,6 +532,66 @@ public class CommentExample {
 
         public Criteria andReplayNumNotBetween(Integer value1, Integer value2) {
             addCriterion("replayNum not between", value1, value2, "replayNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idIsNull() {
+            addCriterion("replay_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idIsNotNull() {
+            addCriterion("replay_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idEqualTo(Integer value) {
+            addCriterion("replay_id =", value, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idNotEqualTo(Integer value) {
+            addCriterion("replay_id <>", value, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idGreaterThan(Integer value) {
+            addCriterion("replay_id >", value, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idGreaterThanOrEqualTo(Integer value) {
+            addCriterion("replay_id >=", value, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idLessThan(Integer value) {
+            addCriterion("replay_id <", value, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idLessThanOrEqualTo(Integer value) {
+            addCriterion("replay_id <=", value, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idIn(List<Integer> values) {
+            addCriterion("replay_id in", values, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idNotIn(List<Integer> values) {
+            addCriterion("replay_id not in", values, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idBetween(Integer value1, Integer value2) {
+            addCriterion("replay_id between", value1, value2, "replay_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplay_idNotBetween(Integer value1, Integer value2) {
+            addCriterion("replay_id not between", value1, value2, "replay_id");
             return (Criteria) this;
         }
     }

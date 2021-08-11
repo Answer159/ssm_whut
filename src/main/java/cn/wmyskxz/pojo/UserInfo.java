@@ -3,6 +3,8 @@ package cn.wmyskxz.pojo;
 public class UserInfo {
     private Integer id;
 
+    private String account;
+
     private String username;
 
     private String password;
@@ -12,8 +14,6 @@ public class UserInfo {
     private String selfIntro;
 
     private String phone;
-
-    private String account;
 
     private String collection_class;
 
@@ -25,6 +25,14 @@ public class UserInfo {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
     }
 
     public String getUsername() {
@@ -65,14 +73,6 @@ public class UserInfo {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account == null ? null : account.trim();
     }
 
     public String getCollection_class() {

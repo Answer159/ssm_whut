@@ -476,17 +476,19 @@ public class ForeController {
 		List<UserInfo> userInfos1=new ArrayList<>();
 		int count=0;
 		for(ClassInfo classInfo:classInfos){
-			if(count>10){
+			if(count>=10){
 				break;
 			}
 			classInfos1.add(classInfo);
+			count++;
 		}
 		count=0;
 		for(UserInfo userInfo:userInfos){
-			if(count>10){
+			if(count>=10){
 				break;
 			}
 			userInfos1.add(userInfo);
+			count++;
 		}
 
 		Map map=new HashMap();

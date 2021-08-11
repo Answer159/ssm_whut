@@ -3,7 +3,7 @@
 <mapper namespace="cn.wmyskxz.mapper.Order_qMapper">
   <resultMap id="BaseResultMap" type="cn.wmyskxz.pojo.Order_q">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="order_status" jdbcType="NVARCHAR" property="order_status" />
+    <result column="order_status" jdbcType="VARCHAR" property="order_status" />
     <result column="buyer_id" jdbcType="INTEGER" property="buyer_id" />
     <result column="seller_id" jdbcType="INTEGER" property="seller_id" />
     <result column="question_id" jdbcType="INTEGER" property="question_id" />
@@ -82,7 +82,7 @@
       question_id, createDate, price, 
       suggestTime, buyer_statu, seller_statu
       )
-    values (#{order_status,jdbcType=NVARCHAR}, #{buyer_id,jdbcType=INTEGER}, #{seller_id,jdbcType=INTEGER}, 
+    values (#{order_status,jdbcType=VARCHAR}, #{buyer_id,jdbcType=INTEGER}, #{seller_id,jdbcType=INTEGER}, 
       #{question_id,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{price,jdbcType=DOUBLE}, 
       #{suggestTime,jdbcType=DOUBLE}, #{buyer_statu,jdbcType=INTEGER}, #{seller_statu,jdbcType=INTEGER}
       )
@@ -120,7 +120,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="order_status != null">
-        #{order_status,jdbcType=NVARCHAR},
+        #{order_status,jdbcType=VARCHAR},
       </if>
       <if test="buyer_id != null">
         #{buyer_id,jdbcType=INTEGER},
@@ -152,7 +152,7 @@
     update order_q
     <set>
       <if test="order_status != null">
-        order_status = #{order_status,jdbcType=NVARCHAR},
+        order_status = #{order_status,jdbcType=VARCHAR},
       </if>
       <if test="buyer_id != null">
         buyer_id = #{buyer_id,jdbcType=INTEGER},
@@ -183,7 +183,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wmyskxz.pojo.Order_q">
     update order_q
-    set order_status = #{order_status,jdbcType=NVARCHAR},
+    set order_status = #{order_status,jdbcType=VARCHAR},
       buyer_id = #{buyer_id,jdbcType=INTEGER},
       seller_id = #{seller_id,jdbcType=INTEGER},
       question_id = #{question_id,jdbcType=INTEGER},

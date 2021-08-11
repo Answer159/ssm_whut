@@ -3,12 +3,12 @@
 <mapper namespace="cn.wmyskxz.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="cn.wmyskxz.pojo.UserInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="graghId" jdbcType="INTEGER" property="graghId" />
     <result column="selfIntro" jdbcType="VARCHAR" property="selfIntro" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="collection_class" jdbcType="VARCHAR" property="collection_class" />
     <result column="collection_question" jdbcType="VARCHAR" property="collection_question" />
   </resultMap>
@@ -42,7 +42,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, graghId, selfIntro, phone, account, collection_class, collection_question
+    id, account, username, password, graghId, selfIntro, phone, collection_class, collection_question
   </sql>
   <select id="selectByExample" parameterType="cn.wmyskxz.pojo.UserInfoExample" resultMap="BaseResultMap">
     select
@@ -70,16 +70,19 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.UserInfo" useGeneratedKeys="true">
-    insert into userInfo (username, password, graghId, 
-      selfIntro, phone, account, 
+    insert into userInfo (account, username, password, 
+      graghId, selfIntro, phone, 
       collection_class, collection_question)
-    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{graghId,jdbcType=INTEGER}, 
-      #{selfIntro,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+    values (#{account,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{graghId,jdbcType=INTEGER}, #{selfIntro,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{collection_class,jdbcType=VARCHAR}, #{collection_question,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.UserInfo" useGeneratedKeys="true">
     insert into userInfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
       <if test="username != null">
         username,
       </if>
@@ -95,9 +98,6 @@
       <if test="phone != null">
         phone,
       </if>
-      <if test="account != null">
-        account,
-      </if>
       <if test="collection_class != null">
         collection_class,
       </if>
@@ -106,6 +106,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
       </if>
@@ -121,9 +124,6 @@
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="account != null">
-        #{account,jdbcType=VARCHAR},
-      </if>
       <if test="collection_class != null">
         #{collection_class,jdbcType=VARCHAR},
       </if>
@@ -135,6 +135,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.wmyskxz.pojo.UserInfo">
     update userInfo
     <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
       </if>
@@ -150,9 +153,6 @@
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="account != null">
-        account = #{account,jdbcType=VARCHAR},
-      </if>
       <if test="collection_class != null">
         collection_class = #{collection_class,jdbcType=VARCHAR},
       </if>
@@ -164,12 +164,12 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wmyskxz.pojo.UserInfo">
     update userInfo
-    set username = #{username,jdbcType=VARCHAR},
+    set account = #{account,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       graghId = #{graghId,jdbcType=INTEGER},
       selfIntro = #{selfIntro,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR},
       collection_class = #{collection_class,jdbcType=VARCHAR},
       collection_question = #{collection_question,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
