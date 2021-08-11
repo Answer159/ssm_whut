@@ -1249,7 +1249,7 @@ public class ForeController {
 		for(MultipartFile p:pictures){
 			ClassImageInfo classImageInfo=new ClassImageInfo();
 			classImageInfo.setClassInfo_id(class_id);
-			classImageInfo.setStatu(0);
+			classImageInfo.setStatu(1);
 			int graph_id=classImageInfoService.add(classImageInfo);
 			String fileName = graph_id + ".jpg";
 			File uploadPicture = new File(filePath, fileName);
@@ -1280,7 +1280,7 @@ public class ForeController {
 		for(MultipartFile p:videos){
 			ClassVideoInfo classVideoInfo=new ClassVideoInfo();
 			classVideoInfo.setClassInfo_id(class_id);
-			classVideoInfo.setStatu(0);
+			classVideoInfo.setStatu(1);
 			int video_id=classVideoInfoService.add(classVideoInfo);
 			String fileName = video_id + ".mp4";
 			File uploadVideo = new File(filePath, fileName);
