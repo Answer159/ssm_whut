@@ -1105,7 +1105,7 @@ public class ForeController {
 
 
 		question.setUse_id(userInfo.getId());
-		question.setStatu(0);
+		question.setStatu(1);
 		question.setCommentNum(0);
 		question.setLike_(0);
 
@@ -1139,7 +1139,7 @@ public class ForeController {
 
 
 		classInfo.setUse_id(userInfo.getId());
-		classInfo.setStatu(0);
+		classInfo.setStatu(1);
 
 		Integer id=classInfoService.add(classInfo);
 
@@ -1160,7 +1160,7 @@ public class ForeController {
 	//last:6-8
 	@RequestMapping("/postComment")
 	@ResponseBody
-	@ApiOperation(value = "发布评论")
+	@ApiOperation(value = "发布评论,没有回复replay_id为-1")
 	public Map postComment(HttpSession session,
 						   @RequestParam("question_id") Integer question_id,
 						   @RequestParam("content") String content,
