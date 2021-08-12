@@ -1239,30 +1239,53 @@ public class ForeController {
 	public boolean postImage(HttpServletRequest request, MultipartFile[] pictures, int class_id, int type){
 		String filePath;
 		if(type==0){
-			filePath = request.getSession().getServletContext()
-					.getRealPath("img/classImage" + class_id);
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("img/classImage/" + class_id);
+			filePath="./src/main/webapp/img/classImage/"+class_id;
 		}
 		else{
-			filePath = request.getSession().getServletContext()
-					.getRealPath("img/questionImage/" + class_id);
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("img/questionImage/" + class_id);
+			filePath="./src/main/webapp/img/questionImage/"+class_id;
 		}
 		for(MultipartFile p:pictures){
-			ClassImageInfo classImageInfo=new ClassImageInfo();
-			classImageInfo.setClassInfo_id(class_id);
-			classImageInfo.setStatu(1);
-			classImageInfoService.add(classImageInfo);
-			int graph_id=classImageInfo.getId();
-			String fileName = graph_id + ".jpg";
-			File uploadPicture = new File(filePath, fileName);
-			if (uploadPicture.exists()) {
-				uploadPicture.delete();
+			if(type==0){
+				ClassImageInfo classImageInfo=new ClassImageInfo();
+				classImageInfo.setClassInfo_id(class_id);
+				classImageInfo.setStatu(1);
+				classImageInfoService.add(classImageInfo);
+				int graph_id=classImageInfo.getId();
+				String fileName = graph_id + ".jpg";
+				File uploadPicture = new File(filePath, fileName);
+				if (uploadPicture.exists()) {
+					uploadPicture.delete();
 
+				}
+				uploadPicture.mkdirs();
+				try {
+					p.transferTo(uploadPicture);
+				} catch (Exception e) {
+					return false;
+				}
 			}
-			uploadPicture.mkdirs();
-			try {
-				p.transferTo(uploadPicture);
-			} catch (Exception e) {
-				return false;
+			else{
+				QuestionImageInfo questionImageInfo=new QuestionImageInfo();
+				questionImageInfo.setQuestion_id(class_id);
+				questionImageInfo.setStatu(1);
+				questionImageInfoService.add(questionImageInfo);
+				int graph_id=questionImageInfo.getId();
+				String fileName = graph_id + ".jpg";
+				File uploadPicture = new File(filePath, fileName);
+				if (uploadPicture.exists()) {
+					uploadPicture.delete();
+
+				}
+				uploadPicture.mkdirs();
+				try {
+					p.transferTo(uploadPicture);
+				} catch (Exception e) {
+					return false;
+				}
 			}
 		}
 		return true;
@@ -1271,31 +1294,55 @@ public class ForeController {
 	public boolean postVideo(HttpServletRequest request,MultipartFile[] videos,int class_id,int type){
 		String filePath;
 		if(type==0){
-			filePath = request.getSession().getServletContext()
-					.getRealPath("video/classVideo/" + class_id);
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("video/classVideo/" + class_id);
+			filePath="./src/main/webapp/video/classVideo/"+class_id;
 		}
 		else{
-			filePath = request.getSession().getServletContext()
-					.getRealPath("video/questionVideo/" + class_id);
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("video/questionVideo/" + class_id);
+			filePath="./src/main/webapp/video/questionVideo/"+class_id;
 		}
 		for(MultipartFile p:videos){
-			ClassVideoInfo classVideoInfo=new ClassVideoInfo();
-			classVideoInfo.setClassInfo_id(class_id);
-			classVideoInfo.setStatu(1);
-			classVideoInfoService.add(classVideoInfo);
-			int video_id=classVideoInfo.getId();
-			String fileName = video_id + ".mp4";
-			File uploadVideo = new File(filePath, fileName);
-			if (uploadVideo.exists()) {
-				uploadVideo.delete();
+			if(type==0){
+				ClassVideoInfo classVideoInfo=new ClassVideoInfo();
+				classVideoInfo.setClassInfo_id(class_id);
+				classVideoInfo.setStatu(1);
+				classVideoInfoService.add(classVideoInfo);
+				int video_id=classVideoInfo.getId();
+				String fileName = video_id + ".mp4";
+				File uploadVideo = new File(filePath, fileName);
+				if (uploadVideo.exists()) {
+					uploadVideo.delete();
 
+				}
+				uploadVideo.mkdirs();
+				try {
+					p.transferTo(uploadVideo);
+				} catch (Exception e) {
+					return false;
+				}
 			}
-			uploadVideo.mkdirs();
-			try {
-				p.transferTo(uploadVideo);
-			} catch (Exception e) {
-				return false;
+			else{
+				QuestionVideoInfo questionVideoInfo=new QuestionVideoInfo();
+				questionVideoInfo.setQuestion_id(class_id);
+				questionVideoInfo.setStatu(1);
+				questionVideoInfoService.add(questionVideoInfo);
+				int video_id=questionVideoInfo.getId();
+				String fileName = video_id + ".mp4";
+				File uploadVideo = new File(filePath, fileName);
+				if (uploadVideo.exists()) {
+					uploadVideo.delete();
+
+				}
+				uploadVideo.mkdirs();
+				try {
+					p.transferTo(uploadVideo);
+				} catch (Exception e) {
+					return false;
+				}
 			}
+
 		}
 		return true;
 	}
