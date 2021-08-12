@@ -1111,8 +1111,8 @@ public class ForeController {
 
 		Map map=new HashMap();
 
-		Integer id=questionService.add(question);
-
+		questionService.add(question);
+		Integer id=question.getId();
 		if(!postImage(request,pictures,id,1)){
 			map.put("msg","fail");
 			return map;
@@ -1141,8 +1141,8 @@ public class ForeController {
 		classInfo.setUse_id(userInfo.getId());
 		classInfo.setStatu(1);
 
-		Integer id=classInfoService.add(classInfo);
-
+		classInfoService.add(classInfo);
+		Integer id=classInfo.getId();
 		Map map=new HashMap();
 
 		if(!postImage(request,pictures,id,0)){
@@ -1313,8 +1313,8 @@ public class ForeController {
 			return map1;
 		}
 		userInfo.setGraghId(0);
-		Integer id=userInfoService.add(userInfo);
-
+		userInfoService.add(userInfo);
+		Integer id=userInfo.getId();
 		String filePath=request.getSession().getServletContext().getRealPath("img/userImage/"+id);
 		String fileName="0.jpg";
 
@@ -1705,7 +1705,7 @@ public class ForeController {
                            MultipartFile[] pictures,
 						   Integer class_id){
 		Map map=new HashMap();
-		UserInfo userInfo=(UserInfo)session.getAttribute("UserInfo");
+		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
 		if(flag==0){
 			postImage(request,pictures,class_id,0);
 			List<ClassImageInfo> classImageInfos=classImageInfoService.list(class_id);
@@ -1728,7 +1728,7 @@ public class ForeController {
                            MultipartFile[] videos,
 						   Integer class_id){
 		Map map=new HashMap();
-		UserInfo userInfo=(UserInfo)session.getAttribute("UserInfo");
+		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
 		if(flag==0){
 			postVideo(request,videos,class_id,0);
 			List<ClassVideoInfo> classVideoInfos=classVideoInfoService.list(class_id);
