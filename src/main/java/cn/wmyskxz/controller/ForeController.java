@@ -1491,7 +1491,9 @@ public class ForeController {
 				String content=comment.getContent();
 				comment.setContent("@"+name+"  "+content);
 				comments1.add(comment);
+				continue;
 			}
+			comments1.add(comment);
 		}
 		Map map=new HashMap();
 		map.put("question",question);
