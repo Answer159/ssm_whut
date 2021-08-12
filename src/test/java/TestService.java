@@ -3,6 +3,7 @@ import cn.wmyskxz.mapper.CategoryMapper;
 import cn.wmyskxz.pojo.Category;
 import cn.wmyskxz.pojo.ClassInfo;
 import cn.wmyskxz.pojo.Question;
+import cn.wmyskxz.pojo.UserInfo;
 import cn.wmyskxz.service.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,25 +43,35 @@ public class TestService {
     UserInfoService userInfoService;
     ApplicationContext c;
     MockMvc mockMvc;
-    @Autowired
-    protected WebApplicationContext wac;
-    @Before
-    public void setup(){
-        mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
-    }
-    @Test
-    public void tt() throws Exception {
-
-        ResultActions resultActions = this.mockMvc
-                .perform(MockMvcRequestBuilders.get("/searchClassInfo").accept(MediaType.APPLICATION_JSON).param("keyword","圆锥曲线"));
-        MvcResult mvcResult = resultActions.andReturn();
-        String result = mvcResult.getResponse().getContentAsString();
-        System.out.println("客户端获的数据:" + result);
-    }
+//    @Autowired
+//    protected WebApplicationContext wac;
+//    @Before
+//    public void setup(){
+//        mockMvc = MockMvcBuilders.standaloneSetup(wac).build();
+//    }
+//    @Test
+//    public void tt() throws Exception {
+//
+//        ResultActions resultActions = this.mockMvc
+//                .perform(MockMvcRequestBuilders.get("/searchClassInfo").accept(MediaType.APPLICATION_JSON).param("keyword","圆锥曲线"));
+//        MvcResult mvcResult = resultActions.andReturn();
+//        String result = mvcResult.getResponse().getContentAsString();
+//        System.out.println("客户端获的数据:" + result);
+//    }
     public void testCategory(){
         c=new ClassPathXmlApplicationContext("spring-mybatis.xml");
         classInfoService=c.getBean(ClassInfoServiceImpl.class);
         questionService=c.getBean(QuestionServiceImpl.class);
+        userInfoService=c.getBean(UserInfoServiceImpl.class);
+        UserInfo userInfo=new UserInfo();
+        userInfo.setAccount("aaaaaaaaaa");
+        userInfo.setPassword("1234");
+        userInfo.setPhone("123123");
+        int id=userInfoService.add(userInfo);
+        id=userInfo.getId();
+        System.out.println("\n\n\n\n\n\n");
+        System.out.println(id);
+        System.out.println("\n\n\n\n\n\n");
         //List<Category> categoryList=categoryService.list();
 //        for(Category c:categoryList){
 //            System.out.println("domain:"+c.getDomain());
@@ -69,9 +80,9 @@ public class TestService {
 //        Category category=categoryService.get(1);
 //        System.out.println("domain:"+category.getDomain());
 //        System.out.println("ID:"+category.getId());
-        for(Question question:questionService.list()){
-            System.out.println("\n"+question.getTitle()+"\n");
-        }
+//        for(Question question:questionService.list()){
+//            System.out.println("\n"+question.getTitle()+"\n");
+//        }
         //questionService.delete(1);
 //        for(Question question:questionService.list()){
 //            System.out.println("\n"+question.getTitle()+"\n");
@@ -86,11 +97,11 @@ public class TestService {
 
     }
 
-//    @Test
-//    public static void main(String[] args) throws Exception {
-//        TestService testService=new TestService();
-//        testService.tt();
-//    }
+
+    public static void main(String[] args) {
+        TestService testService=new TestService();
+        testService.testCategory();
+    }
 }
 /**
  * @Author :wzh

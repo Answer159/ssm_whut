@@ -9,9 +9,9 @@
     <result column="suggestTime" jdbcType="DOUBLE" property="suggestTime" />
     <result column="textIntro" jdbcType="VARCHAR" property="textIntro" />
     <result column="use_id" jdbcType="INTEGER" property="use_id" />
-    <result column="front_knowledge" jdbcType="NVARCHAR" property="front_knowledge" />
-    <result column="tools" jdbcType="NVARCHAR" property="tools" />
-    <result column="question_content" jdbcType="NVARCHAR" property="question_content" />
+    <result column="front_knowledge" jdbcType="VARCHAR" property="front_knowledge" />
+    <result column="tools" jdbcType="VARCHAR" property="tools" />
+    <result column="question_content" jdbcType="VARCHAR" property="question_content" />
     <result column="statu" jdbcType="INTEGER" property="statu" />
     <result column="like_" jdbcType="INTEGER" property="like_" />
     <result column="commentNum" jdbcType="INTEGER" property="commentNum" />
@@ -88,7 +88,7 @@
       )
     values (#{domain_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
       #{suggestTime,jdbcType=DOUBLE}, #{textIntro,jdbcType=VARCHAR}, #{use_id,jdbcType=INTEGER}, 
-      #{front_knowledge,jdbcType=NVARCHAR}, #{tools,jdbcType=NVARCHAR}, #{question_content,jdbcType=NVARCHAR}, 
+      #{front_knowledge,jdbcType=VARCHAR}, #{tools,jdbcType=VARCHAR}, #{question_content,jdbcType=VARCHAR}, 
       #{statu,jdbcType=INTEGER}, #{like_,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}
       )
   </insert>
@@ -152,13 +152,13 @@
         #{use_id,jdbcType=INTEGER},
       </if>
       <if test="front_knowledge != null">
-        #{front_knowledge,jdbcType=NVARCHAR},
+        #{front_knowledge,jdbcType=VARCHAR},
       </if>
       <if test="tools != null">
-        #{tools,jdbcType=NVARCHAR},
+        #{tools,jdbcType=VARCHAR},
       </if>
       <if test="question_content != null">
-        #{question_content,jdbcType=NVARCHAR},
+        #{question_content,jdbcType=VARCHAR},
       </if>
       <if test="statu != null">
         #{statu,jdbcType=INTEGER},
@@ -193,13 +193,13 @@
         use_id = #{use_id,jdbcType=INTEGER},
       </if>
       <if test="front_knowledge != null">
-        front_knowledge = #{front_knowledge,jdbcType=NVARCHAR},
+        front_knowledge = #{front_knowledge,jdbcType=VARCHAR},
       </if>
       <if test="tools != null">
-        tools = #{tools,jdbcType=NVARCHAR},
+        tools = #{tools,jdbcType=VARCHAR},
       </if>
       <if test="question_content != null">
-        question_content = #{question_content,jdbcType=NVARCHAR},
+        question_content = #{question_content,jdbcType=VARCHAR},
       </if>
       <if test="statu != null">
         statu = #{statu,jdbcType=INTEGER},
@@ -221,9 +221,9 @@
       suggestTime = #{suggestTime,jdbcType=DOUBLE},
       textIntro = #{textIntro,jdbcType=VARCHAR},
       use_id = #{use_id,jdbcType=INTEGER},
-      front_knowledge = #{front_knowledge,jdbcType=NVARCHAR},
-      tools = #{tools,jdbcType=NVARCHAR},
-      question_content = #{question_content,jdbcType=NVARCHAR},
+      front_knowledge = #{front_knowledge,jdbcType=VARCHAR},
+      tools = #{tools,jdbcType=VARCHAR},
+      question_content = #{question_content,jdbcType=VARCHAR},
       statu = #{statu,jdbcType=INTEGER},
       like_ = #{like_,jdbcType=INTEGER},
       commentNum = #{commentNum,jdbcType=INTEGER}

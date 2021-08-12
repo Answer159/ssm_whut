@@ -9,9 +9,9 @@
     <result column="suggestTime" jdbcType="DOUBLE" property="suggestTime" />
     <result column="textIntro" jdbcType="VARCHAR" property="textIntro" />
     <result column="use_id" jdbcType="INTEGER" property="use_id" />
-    <result column="front_knowledge" jdbcType="NCHAR" property="front_knowledge" />
-    <result column="tools" jdbcType="NCHAR" property="tools" />
-    <result column="class_content" jdbcType="NCHAR" property="class_content" />
+    <result column="front_knowledge" jdbcType="VARCHAR" property="front_knowledge" />
+    <result column="tools" jdbcType="VARCHAR" property="tools" />
+    <result column="class_content" jdbcType="VARCHAR" property="class_content" />
     <result column="statu" jdbcType="INTEGER" property="statu" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -79,7 +79,7 @@
       statu)
     values (#{domain_id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
       #{suggestTime,jdbcType=DOUBLE}, #{textIntro,jdbcType=VARCHAR}, #{use_id,jdbcType=INTEGER}, 
-      #{front_knowledge,jdbcType=NCHAR}, #{tools,jdbcType=NCHAR}, #{class_content,jdbcType=NCHAR}, 
+      #{front_knowledge,jdbcType=VARCHAR}, #{tools,jdbcType=VARCHAR}, #{class_content,jdbcType=VARCHAR}, 
       #{statu,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.ClassInfo" useGeneratedKeys="true">
@@ -136,13 +136,13 @@
         #{use_id,jdbcType=INTEGER},
       </if>
       <if test="front_knowledge != null">
-        #{front_knowledge,jdbcType=NCHAR},
+        #{front_knowledge,jdbcType=VARCHAR},
       </if>
       <if test="tools != null">
-        #{tools,jdbcType=NCHAR},
+        #{tools,jdbcType=VARCHAR},
       </if>
       <if test="class_content != null">
-        #{class_content,jdbcType=NCHAR},
+        #{class_content,jdbcType=VARCHAR},
       </if>
       <if test="statu != null">
         #{statu,jdbcType=INTEGER},
@@ -171,13 +171,13 @@
         use_id = #{use_id,jdbcType=INTEGER},
       </if>
       <if test="front_knowledge != null">
-        front_knowledge = #{front_knowledge,jdbcType=NCHAR},
+        front_knowledge = #{front_knowledge,jdbcType=VARCHAR},
       </if>
       <if test="tools != null">
-        tools = #{tools,jdbcType=NCHAR},
+        tools = #{tools,jdbcType=VARCHAR},
       </if>
       <if test="class_content != null">
-        class_content = #{class_content,jdbcType=NCHAR},
+        class_content = #{class_content,jdbcType=VARCHAR},
       </if>
       <if test="statu != null">
         statu = #{statu,jdbcType=INTEGER},
@@ -193,9 +193,9 @@
       suggestTime = #{suggestTime,jdbcType=DOUBLE},
       textIntro = #{textIntro,jdbcType=VARCHAR},
       use_id = #{use_id,jdbcType=INTEGER},
-      front_knowledge = #{front_knowledge,jdbcType=NCHAR},
-      tools = #{tools,jdbcType=NCHAR},
-      class_content = #{class_content,jdbcType=NCHAR},
+      front_knowledge = #{front_knowledge,jdbcType=VARCHAR},
+      tools = #{tools,jdbcType=VARCHAR},
+      class_content = #{class_content,jdbcType=VARCHAR},
       statu = #{statu,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
