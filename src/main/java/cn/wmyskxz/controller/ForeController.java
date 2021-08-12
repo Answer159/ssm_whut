@@ -1250,7 +1250,8 @@ public class ForeController {
 			ClassImageInfo classImageInfo=new ClassImageInfo();
 			classImageInfo.setClassInfo_id(class_id);
 			classImageInfo.setStatu(1);
-			int graph_id=classImageInfoService.add(classImageInfo);
+			classImageInfoService.add(classImageInfo);
+			int graph_id=classImageInfo.getId();
 			String fileName = graph_id + ".jpg";
 			File uploadPicture = new File(filePath, fileName);
 			if (uploadPicture.exists()) {
@@ -1281,7 +1282,8 @@ public class ForeController {
 			ClassVideoInfo classVideoInfo=new ClassVideoInfo();
 			classVideoInfo.setClassInfo_id(class_id);
 			classVideoInfo.setStatu(1);
-			int video_id=classVideoInfoService.add(classVideoInfo);
+			classVideoInfoService.add(classVideoInfo);
+			int video_id=classVideoInfo.getId();
 			String fileName = video_id + ".mp4";
 			File uploadVideo = new File(filePath, fileName);
 			if (uploadVideo.exists()) {
