@@ -1366,6 +1366,8 @@ public class ForeController {
 			return map1;
 		}
 		userInfo.setGraghId(0);
+		userInfo.setCollection_question(null);
+		userInfo.setCollection_class(null);
 		userInfoService.add(userInfo);
 		Integer id=userInfo.getId();
 		String filePath="./src/main/webapp/img/userImage/"+id;
