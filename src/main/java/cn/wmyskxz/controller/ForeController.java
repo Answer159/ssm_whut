@@ -1433,9 +1433,14 @@ public class ForeController {
 		for(Evaluation evaluation:evaluations){
 			evaluationUsers.add(userInfoService.get(evaluation.getUse_id()));
 		}
-
+		List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo_id);
+		String path="./src/main/webapp/img/classImage";
 		Category category=categoryService.get(classInfo.getDomain_id());
 		UserInfo user=userInfoService.get(classInfo.getUse_id());
+		List<String> imgPath=new ArrayList<>();
+		for(ClassImageInfo classImageInfo:classImageInfos){
+			imgPath.add(path+classImageInfo.getId()+".jpg");
+		}
 
 		Map map=new HashMap();
 		map.put("classInfo",classInfo);
@@ -1443,6 +1448,7 @@ public class ForeController {
 		map.put("category",category);
 		map.put("user",user);
 		map.put("evaluationUsers",evaluationUsers);
+		map.put("imgPath",imgPath);
 
 		return map;
 	}
@@ -1495,12 +1501,19 @@ public class ForeController {
 			}
 			comments1.add(comment);
 		}
+		List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(QuestionId);
+		String path="./src/main/webapp/img/questionImage";
+		List<String> imgPath=new ArrayList<>();
+		for(QuestionImageInfo questionImageInfo:questionImageInfos){
+			imgPath.add(path+questionImageInfo.getId()+".jpg");
+		}
 		Map map=new HashMap();
 		map.put("question",question);
 		map.put("category",category);
 		map.put("comments",comments1);
 		map.put("userInfo",userInfo);
 		map.put("commentUsers",commentUser);
+		map.put("imgPath",imgPath);
 		return map;
 
 	}
