@@ -2,6 +2,7 @@ package cn.wmyskxz.controller;
 
 import cn.wmyskxz.pojo.*;
 import cn.wmyskxz.service.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -76,6 +77,8 @@ public class ForeController {
 	Order_qService order_qService;
 	@Autowired
 	EvaluationService evaluationService;
+
+	private ObjectMapper mapper;
 
 	@RequestMapping("/cancelCollectClass")
 	@ResponseBody
@@ -1096,13 +1099,13 @@ public class ForeController {
 	@RequestMapping("/postQuestion")
 	@ResponseBody
 	@ApiOperation(value = "发布提问")
-	public Map postQuestion(@RequestBody Question question,
+	public Map postQuestion(@RequestParam("question") String questionString,
 							   HttpSession session,
 							   HttpServletRequest request,
                                MultipartFile[] pictures,
-                               MultipartFile[] videos){
+                               MultipartFile[] videos) throws IOException {
 		UserInfo userInfo=(UserInfo) session.getAttribute("userInfo");
-
+		Question question=mapper.readValue(questionString,Question.class);
 
 		question.setUse_id(userInfo.getId());
 		question.setStatu(1);
@@ -1130,13 +1133,13 @@ public class ForeController {
 	@RequestMapping("/postClassInfo")
 	@ResponseBody
 	@ApiOperation(value = "发布课程")
-	public Map postClassInfo(@RequestBody ClassInfo classInfo,
+	public Map postClassInfo(@RequestParam("classInfo") String classInfoString,
 							 HttpSession session,
 							 HttpServletRequest request,
                              MultipartFile[] pictures,
-                             MultipartFile[] videos){
+                             MultipartFile[] videos) throws IOException {
 		UserInfo userInfo=(UserInfo) session.getAttribute("userInfo");
-
+		ClassInfo classInfo = mapper.readValue(classInfoString,ClassInfo.class);
 
 		classInfo.setUse_id(userInfo.getId());
 		classInfo.setStatu(1);
@@ -1352,8 +1355,9 @@ public class ForeController {
 	@ResponseBody
 	@ApiOperation(value = "注册")
 	public Map register(HttpServletRequest request,
-						@RequestBody UserInfo userInfo,
-						@RequestParam("picture") MultipartFile picture){
+						@RequestParam("userInfo") String userInfo1,
+						MultipartFile picture) throws IOException {
+		UserInfo userInfo=mapper.readValue(userInfo1,UserInfo.class);
 		boolean exist=userInfoService.isExist(userInfo.getAccount());
 		if(exist){
 			Map map1=new HashMap();
@@ -1364,7 +1368,7 @@ public class ForeController {
 		userInfo.setGraghId(0);
 		userInfoService.add(userInfo);
 		Integer id=userInfo.getId();
-		String filePath=request.getSession().getServletContext().getRealPath("img/userImage/"+id);
+		String filePath="./src/main/webapp/img/userImage/"+id;
 		String fileName="0.jpg";
 
 		File uploadPicture=new File(filePath,fileName);
