@@ -469,6 +469,20 @@ public class ForeController {
 	@ResponseBody
 	@ApiOperation(value = "主页内容")
 	public Map home() {
+
+		File directory = new File(".");
+		String path=null;
+		try {
+			path = directory.getCanonicalPath();//获取当前路径
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+		System.out.println("\n\n\n\n\n\n");
+		System.out.println(path);
+		System.out.println("\n\n\n\n\n\n");
 		List<Category> categories = categoryService.list();
 		//classInfoService.fill(categories);
 		//classInfoService.fillByRow(categories);
@@ -1262,12 +1276,12 @@ public class ForeController {
 		if(type==0){
 //			filePath = request.getSession().getServletContext()
 //					.getRealPath("img/classImage/" + class_id);
-			filePath="src\\main\\webapp\\img\\classImage\\"+class_id;
+			filePath="D:\\SdData\\img\\classImage\\"+class_id;
 		}
 		else{
 //			filePath = request.getSession().getServletContext()
 //					.getRealPath("img/questionImage/" + class_id);
-			filePath="src\\main\\webapp\\img\\questionImage\\"+class_id;
+			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
 		}
 		File dirs=new File(filePath);
 		if (!dirs.exists()) {
@@ -1329,12 +1343,12 @@ public class ForeController {
 		if(type==0){
 //			filePath = request.getSession().getServletContext()
 //					.getRealPath("video/classVideo/" + class_id);
-			filePath="src/main/webapp/video/classVideo/"+class_id;
+			filePath="D:\\SdData\\img\\classVideo\\"+class_id;
 		}
 		else{
 //			filePath = request.getSession().getServletContext()
 //					.getRealPath("video/questionVideo/" + class_id);
-			filePath="src/main/webapp/video/questionVideo/"+class_id;
+			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
 		}
 		File dirs=new File(filePath);
 		if (!dirs.exists()) {
@@ -1413,7 +1427,7 @@ public class ForeController {
 		userInfo.setCollection_class(null);
 		userInfoService.add(userInfo);
 		Integer id=userInfo.getId();
-		String filePath="src\\main\\webapp\\img\\userImage\\"+id;
+		String filePath="D:\\SdData\\img\\userImage\\"+id;
 		String fileName="0.jpg";
 		File dirs=new File(filePath);
 
@@ -1795,14 +1809,14 @@ public class ForeController {
 		Map map=new HashMap();
 		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
 		Integer id=userInfo.getGraghId();
-		String filePath = request.getSession().getServletContext()
-				.getRealPath("img/classImage" + userInfo.getId());
+		String filePath = "D:\\SdData\\img\\userImage\\"+userInfo.getId();
 		String fileName = id+1 + ".jpg";
 		userInfo.setGraghId(id+1);
 		File uploadImg=new File(filePath,fileName);
 
-		uploadImg.mkdirs();
+
 		try{
+			uploadImg.createNewFile();
 			picture.transferTo(uploadImg);
 		}
 		catch (IOException ioException){
