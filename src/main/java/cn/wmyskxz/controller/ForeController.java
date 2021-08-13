@@ -1262,12 +1262,16 @@ public class ForeController {
 		if(type==0){
 //			filePath = request.getSession().getServletContext()
 //					.getRealPath("img/classImage/" + class_id);
-			filePath="./src/main/webapp/img/classImage/"+class_id;
+			filePath="src\\main\\webapp\\img\\classImage\\"+class_id;
 		}
 		else{
 //			filePath = request.getSession().getServletContext()
 //					.getRealPath("img/questionImage/" + class_id);
-			filePath="./src/main/webapp/img/questionImage/"+class_id;
+			filePath="src\\main\\webapp\\img\\questionImage\\"+class_id;
+		}
+		File dirs=new File(filePath);
+		if (!dirs.exists()) {
+			dirs.mkdirs();
 		}
 		for(MultipartFile p:pictures){
 			if(type==0){
@@ -1278,11 +1282,15 @@ public class ForeController {
 				int graph_id=classImageInfo.getId();
 				String fileName = graph_id + ".jpg";
 				File uploadPicture = new File(filePath, fileName);
-				if (uploadPicture.exists()) {
+				if(uploadPicture.exists()){
 					uploadPicture.delete();
-
 				}
-				uploadPicture.mkdirs();
+				try{
+					uploadPicture.createNewFile();
+				}
+				catch (IOException e){
+					e.printStackTrace();
+				}
 				try {
 					p.transferTo(uploadPicture);
 				} catch (Exception e) {
@@ -1297,11 +1305,15 @@ public class ForeController {
 				int graph_id=questionImageInfo.getId();
 				String fileName = graph_id + ".jpg";
 				File uploadPicture = new File(filePath, fileName);
-				if (uploadPicture.exists()) {
+				if(uploadPicture.exists()){
 					uploadPicture.delete();
-
 				}
-				uploadPicture.mkdirs();
+				try{
+					uploadPicture.createNewFile();
+				}
+				catch (IOException e){
+					e.printStackTrace();
+				}
 				try {
 					p.transferTo(uploadPicture);
 				} catch (Exception e) {
@@ -1317,12 +1329,16 @@ public class ForeController {
 		if(type==0){
 //			filePath = request.getSession().getServletContext()
 //					.getRealPath("video/classVideo/" + class_id);
-			filePath="./src/main/webapp/video/classVideo/"+class_id;
+			filePath="src/main/webapp/video/classVideo/"+class_id;
 		}
 		else{
 //			filePath = request.getSession().getServletContext()
 //					.getRealPath("video/questionVideo/" + class_id);
-			filePath="./src/main/webapp/video/questionVideo/"+class_id;
+			filePath="src/main/webapp/video/questionVideo/"+class_id;
+		}
+		File dirs=new File(filePath);
+		if (!dirs.exists()) {
+			dirs.mkdirs();
 		}
 		for(MultipartFile p:videos){
 			if(type==0){
@@ -1335,9 +1351,13 @@ public class ForeController {
 				File uploadVideo = new File(filePath, fileName);
 				if (uploadVideo.exists()) {
 					uploadVideo.delete();
-
 				}
-				uploadVideo.mkdirs();
+				try{
+					uploadVideo.createNewFile();
+				}
+				catch (IOException e){
+					e.printStackTrace();
+				}
 				try {
 					p.transferTo(uploadVideo);
 				} catch (Exception e) {
@@ -1356,7 +1376,12 @@ public class ForeController {
 					uploadVideo.delete();
 
 				}
-				uploadVideo.mkdirs();
+				try{
+					uploadVideo.createNewFile();
+				}
+				catch (IOException e){
+					e.printStackTrace();
+				}
 				try {
 					p.transferTo(uploadVideo);
 				} catch (Exception e) {
@@ -1388,15 +1413,21 @@ public class ForeController {
 		userInfo.setCollection_class(null);
 		userInfoService.add(userInfo);
 		Integer id=userInfo.getId();
-		String filePath="./src/main/webapp/img/userImage/"+id;
+		String filePath="src\\main\\webapp\\img\\userImage\\"+id;
 		String fileName="0.jpg";
+		File dirs=new File(filePath);
 
-		File uploadPicture=new File(filePath,fileName);
-		if(uploadPicture.exists()){
-			uploadPicture.delete();
+		if(dirs.exists()){
+			dirs.delete();
 		}
-
-		uploadPicture.mkdirs();
+		dirs.mkdirs();
+		File uploadPicture=new File(filePath,fileName);
+		try{
+			uploadPicture.createNewFile();
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
 		Map map2=new HashMap();
 		try{
 			picture.transferTo(uploadPicture);
