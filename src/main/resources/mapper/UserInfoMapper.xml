@@ -3,14 +3,18 @@
 <mapper namespace="cn.wmyskxz.mapper.UserInfoMapper">
   <resultMap id="BaseResultMap" type="cn.wmyskxz.pojo.UserInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="domain_id" jdbcType="INTEGER" property="domain_id" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="graghId" jdbcType="INTEGER" property="graghId" />
-    <result column="selfIntro" jdbcType="VARCHAR" property="selfIntro" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="collection_class" jdbcType="VARCHAR" property="collection_class" />
     <result column="collection_question" jdbcType="VARCHAR" property="collection_question" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.wmyskxz.pojo.UserInfo">
+    <result column="selfIntro" jdbcType="LONGVARCHAR" property="selfIntro" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -42,8 +46,29 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, account, username, password, graghId, selfIntro, phone, collection_class, collection_question
+    id, sex, domain_id, account, username, password, graghId, phone, collection_class, 
+    collection_question
   </sql>
+  <sql id="Blob_Column_List">
+    selfIntro
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="cn.wmyskxz.pojo.UserInfoExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from userInfo
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="cn.wmyskxz.pojo.UserInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -59,9 +84,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from userInfo
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -70,16 +97,24 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.UserInfo" useGeneratedKeys="true">
-    insert into userInfo (account, username, password, 
-      graghId, selfIntro, phone, 
-      collection_class, collection_question)
-    values (#{account,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{graghId,jdbcType=INTEGER}, #{selfIntro,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{collection_class,jdbcType=VARCHAR}, #{collection_question,jdbcType=VARCHAR})
+    insert into userInfo (sex, domain_id, account, 
+      username, password, graghId, 
+      phone, collection_class, collection_question, 
+      selfIntro)
+    values (#{sex,jdbcType=INTEGER}, #{domain_id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{graghId,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{collection_class,jdbcType=VARCHAR}, #{collection_question,jdbcType=VARCHAR}, 
+      #{selfIntro,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.UserInfo" useGeneratedKeys="true">
     insert into userInfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="domain_id != null">
+        domain_id,
+      </if>
       <if test="account != null">
         account,
       </if>
@@ -92,9 +127,6 @@
       <if test="graghId != null">
         graghId,
       </if>
-      <if test="selfIntro != null">
-        selfIntro,
-      </if>
       <if test="phone != null">
         phone,
       </if>
@@ -104,8 +136,17 @@
       <if test="collection_question != null">
         collection_question,
       </if>
+      <if test="selfIntro != null">
+        selfIntro,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="domain_id != null">
+        #{domain_id,jdbcType=INTEGER},
+      </if>
       <if test="account != null">
         #{account,jdbcType=VARCHAR},
       </if>
@@ -118,9 +159,6 @@
       <if test="graghId != null">
         #{graghId,jdbcType=INTEGER},
       </if>
-      <if test="selfIntro != null">
-        #{selfIntro,jdbcType=VARCHAR},
-      </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
@@ -130,11 +168,20 @@
       <if test="collection_question != null">
         #{collection_question,jdbcType=VARCHAR},
       </if>
+      <if test="selfIntro != null">
+        #{selfIntro,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.wmyskxz.pojo.UserInfo">
     update userInfo
     <set>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="domain_id != null">
+        domain_id = #{domain_id,jdbcType=INTEGER},
+      </if>
       <if test="account != null">
         account = #{account,jdbcType=VARCHAR},
       </if>
@@ -147,9 +194,6 @@
       <if test="graghId != null">
         graghId = #{graghId,jdbcType=INTEGER},
       </if>
-      <if test="selfIntro != null">
-        selfIntro = #{selfIntro,jdbcType=VARCHAR},
-      </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
@@ -159,16 +203,34 @@
       <if test="collection_question != null">
         collection_question = #{collection_question,jdbcType=VARCHAR},
       </if>
+      <if test="selfIntro != null">
+        selfIntro = #{selfIntro,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.wmyskxz.pojo.UserInfo">
+    update userInfo
+    set sex = #{sex,jdbcType=INTEGER},
+      domain_id = #{domain_id,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      graghId = #{graghId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      collection_class = #{collection_class,jdbcType=VARCHAR},
+      collection_question = #{collection_question,jdbcType=VARCHAR},
+      selfIntro = #{selfIntro,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wmyskxz.pojo.UserInfo">
     update userInfo
-    set account = #{account,jdbcType=VARCHAR},
+    set sex = #{sex,jdbcType=INTEGER},
+      domain_id = #{domain_id,jdbcType=INTEGER},
+      account = #{account,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       graghId = #{graghId,jdbcType=INTEGER},
-      selfIntro = #{selfIntro,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       collection_class = #{collection_class,jdbcType=VARCHAR},
       collection_question = #{collection_question,jdbcType=VARCHAR}

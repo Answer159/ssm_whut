@@ -59,6 +59,11 @@
             <property name="useActualColumnNames" value="true"/>
             <property name="my.isgen.usekeys" value="true"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
+
+            <columnOverride column="front_knowledge" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="tools" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="class_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="textIntro" javaType="java.lang.String" jdbcType="VARCHAR" />
         </table>
 
 
@@ -103,6 +108,10 @@
             <property name="useActualColumnNames" value="true"/>
             <property name="my.isgen.usekeys" value="true"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
+            <columnOverride column="front_knowledge" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="tools" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="question_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="textIntro" javaType="java.lang.String" jdbcType="VARCHAR" />
         </table>
 
         <table tableName="order_q" domainObjectName="Order_q" enableCountByExample="false"

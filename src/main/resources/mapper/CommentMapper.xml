@@ -3,13 +3,15 @@
 <mapper namespace="cn.wmyskxz.mapper.CommentMapper">
   <resultMap id="BaseResultMap" type="cn.wmyskxz.pojo.Comment">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="use_id" jdbcType="INTEGER" property="use_id" />
     <result column="question_id" jdbcType="INTEGER" property="question_id" />
     <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
     <result column="like_" jdbcType="INTEGER" property="like_" />
     <result column="replayNum" jdbcType="INTEGER" property="replayNum" />
     <result column="replay_id" jdbcType="INTEGER" property="replay_id" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.wmyskxz.pojo.Comment">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -41,8 +43,28 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, content, use_id, question_id, createDate, like_, replayNum, replay_id
+    id, use_id, question_id, createDate, like_, replayNum, replay_id
   </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="cn.wmyskxz.pojo.CommentExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="cn.wmyskxz.pojo.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -58,9 +80,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from comment
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -69,19 +93,16 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.Comment" useGeneratedKeys="true">
-    insert into comment (content, use_id, question_id, 
-      createDate, like_, replayNum, 
-      replay_id)
-    values (#{content,jdbcType=VARCHAR}, #{use_id,jdbcType=INTEGER}, #{question_id,jdbcType=INTEGER}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{like_,jdbcType=INTEGER}, #{replayNum,jdbcType=INTEGER}, 
-      #{replay_id,jdbcType=INTEGER})
+    insert into comment (use_id, question_id, createDate, 
+      like_, replayNum, replay_id, 
+      content)
+    values (#{use_id,jdbcType=INTEGER}, #{question_id,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{like_,jdbcType=INTEGER}, #{replayNum,jdbcType=INTEGER}, #{replay_id,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.Comment" useGeneratedKeys="true">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="content != null">
-        content,
-      </if>
       <if test="use_id != null">
         use_id,
       </if>
@@ -100,11 +121,11 @@
       <if test="replay_id != null">
         replay_id,
       </if>
+      <if test="content != null">
+        content,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
       <if test="use_id != null">
         #{use_id,jdbcType=INTEGER},
       </if>
@@ -123,14 +144,14 @@
       <if test="replay_id != null">
         #{replay_id,jdbcType=INTEGER},
       </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.wmyskxz.pojo.Comment">
     update comment
     <set>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
       <if test="use_id != null">
         use_id = #{use_id,jdbcType=INTEGER},
       </if>
@@ -149,13 +170,26 @@
       <if test="replay_id != null">
         replay_id = #{replay_id,jdbcType=INTEGER},
       </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.wmyskxz.pojo.Comment">
+    update comment
+    set use_id = #{use_id,jdbcType=INTEGER},
+      question_id = #{question_id,jdbcType=INTEGER},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      like_ = #{like_,jdbcType=INTEGER},
+      replayNum = #{replayNum,jdbcType=INTEGER},
+      replay_id = #{replay_id,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wmyskxz.pojo.Comment">
     update comment
-    set content = #{content,jdbcType=VARCHAR},
-      use_id = #{use_id,jdbcType=INTEGER},
+    set use_id = #{use_id,jdbcType=INTEGER},
       question_id = #{question_id,jdbcType=INTEGER},
       createDate = #{createDate,jdbcType=TIMESTAMP},
       like_ = #{like_,jdbcType=INTEGER},

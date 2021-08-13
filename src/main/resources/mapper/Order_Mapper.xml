@@ -3,6 +3,7 @@
 <mapper namespace="cn.wmyskxz.mapper.Order_Mapper">
   <resultMap id="BaseResultMap" type="cn.wmyskxz.pojo.Order_">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="score" jdbcType="INTEGER" property="score" />
     <result column="order_status" jdbcType="VARCHAR" property="order_status" />
     <result column="buyer_id" jdbcType="INTEGER" property="buyer_id" />
     <result column="seller_id" jdbcType="INTEGER" property="seller_id" />
@@ -43,7 +44,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, order_status, buyer_id, seller_id, class_id, createDate, price, suggestTime, 
+    id, score, order_status, buyer_id, seller_id, class_id, createDate, price, suggestTime, 
     buyer_statu, seller_statu
   </sql>
   <select id="selectByExample" parameterType="cn.wmyskxz.pojo.Order_Example" resultMap="BaseResultMap">
@@ -72,18 +73,21 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.Order_" useGeneratedKeys="true">
-    insert into order_ (order_status, buyer_id, seller_id, 
-      class_id, createDate, price, 
-      suggestTime, buyer_statu, seller_statu
-      )
-    values (#{order_status,jdbcType=VARCHAR}, #{buyer_id,jdbcType=INTEGER}, #{seller_id,jdbcType=INTEGER}, 
-      #{class_id,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{price,jdbcType=DOUBLE}, 
-      #{suggestTime,jdbcType=DOUBLE}, #{buyer_statu,jdbcType=INTEGER}, #{seller_statu,jdbcType=INTEGER}
-      )
+    insert into order_ (score, order_status, buyer_id, 
+      seller_id, class_id, createDate, 
+      price, suggestTime, buyer_statu, 
+      seller_statu)
+    values (#{score,jdbcType=INTEGER}, #{order_status,jdbcType=VARCHAR}, #{buyer_id,jdbcType=INTEGER}, 
+      #{seller_id,jdbcType=INTEGER}, #{class_id,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{price,jdbcType=DOUBLE}, #{suggestTime,jdbcType=DOUBLE}, #{buyer_statu,jdbcType=INTEGER}, 
+      #{seller_statu,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.wmyskxz.pojo.Order_" useGeneratedKeys="true">
     insert into order_
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="score != null">
+        score,
+      </if>
       <if test="order_status != null">
         order_status,
       </if>
@@ -113,6 +117,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
       <if test="order_status != null">
         #{order_status,jdbcType=VARCHAR},
       </if>
@@ -145,6 +152,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.wmyskxz.pojo.Order_">
     update order_
     <set>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
       <if test="order_status != null">
         order_status = #{order_status,jdbcType=VARCHAR},
       </if>
@@ -177,7 +187,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.wmyskxz.pojo.Order_">
     update order_
-    set order_status = #{order_status,jdbcType=VARCHAR},
+    set score = #{score,jdbcType=INTEGER},
+      order_status = #{order_status,jdbcType=VARCHAR},
       buyer_id = #{buyer_id,jdbcType=INTEGER},
       seller_id = #{seller_id,jdbcType=INTEGER},
       class_id = #{class_id,jdbcType=INTEGER},

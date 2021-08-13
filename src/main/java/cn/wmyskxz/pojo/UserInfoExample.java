@@ -164,6 +164,126 @@ public class UserInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andSexIsNull() {
+            addCriterion("sex is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexIsNotNull() {
+            addCriterion("sex is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexEqualTo(Integer value) {
+            addCriterion("sex =", value, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexNotEqualTo(Integer value) {
+            addCriterion("sex <>", value, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexGreaterThan(Integer value) {
+            addCriterion("sex >", value, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sex >=", value, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexLessThan(Integer value) {
+            addCriterion("sex <", value, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexLessThanOrEqualTo(Integer value) {
+            addCriterion("sex <=", value, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexIn(List<Integer> values) {
+            addCriterion("sex in", values, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexNotIn(List<Integer> values) {
+            addCriterion("sex not in", values, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexBetween(Integer value1, Integer value2) {
+            addCriterion("sex between", value1, value2, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andSexNotBetween(Integer value1, Integer value2) {
+            addCriterion("sex not between", value1, value2, "sex");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idIsNull() {
+            addCriterion("domain_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idIsNotNull() {
+            addCriterion("domain_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idEqualTo(Integer value) {
+            addCriterion("domain_id =", value, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idNotEqualTo(Integer value) {
+            addCriterion("domain_id <>", value, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idGreaterThan(Integer value) {
+            addCriterion("domain_id >", value, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idGreaterThanOrEqualTo(Integer value) {
+            addCriterion("domain_id >=", value, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idLessThan(Integer value) {
+            addCriterion("domain_id <", value, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idLessThanOrEqualTo(Integer value) {
+            addCriterion("domain_id <=", value, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idIn(List<Integer> values) {
+            addCriterion("domain_id in", values, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idNotIn(List<Integer> values) {
+            addCriterion("domain_id not in", values, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idBetween(Integer value1, Integer value2) {
+            addCriterion("domain_id between", value1, value2, "domain_id");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomain_idNotBetween(Integer value1, Integer value2) {
+            addCriterion("domain_id not between", value1, value2, "domain_id");
+            return (Criteria) this;
+        }
+
         public Criteria andAccountIsNull() {
             addCriterion("account is null");
             return (Criteria) this;
@@ -431,76 +551,6 @@ public class UserInfoExample {
 
         public Criteria andGraghIdNotBetween(Integer value1, Integer value2) {
             addCriterion("graghId not between", value1, value2, "graghId");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroIsNull() {
-            addCriterion("selfIntro is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroIsNotNull() {
-            addCriterion("selfIntro is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroEqualTo(String value) {
-            addCriterion("selfIntro =", value, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroNotEqualTo(String value) {
-            addCriterion("selfIntro <>", value, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroGreaterThan(String value) {
-            addCriterion("selfIntro >", value, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroGreaterThanOrEqualTo(String value) {
-            addCriterion("selfIntro >=", value, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroLessThan(String value) {
-            addCriterion("selfIntro <", value, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroLessThanOrEqualTo(String value) {
-            addCriterion("selfIntro <=", value, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroLike(String value) {
-            addCriterion("selfIntro like", value, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroNotLike(String value) {
-            addCriterion("selfIntro not like", value, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroIn(List<String> values) {
-            addCriterion("selfIntro in", values, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroNotIn(List<String> values) {
-            addCriterion("selfIntro not in", values, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroBetween(String value1, String value2) {
-            addCriterion("selfIntro between", value1, value2, "selfIntro");
-            return (Criteria) this;
-        }
-
-        public Criteria andSelfIntroNotBetween(String value1, String value2) {
-            addCriterion("selfIntro not between", value1, value2, "selfIntro");
             return (Criteria) this;
         }
 

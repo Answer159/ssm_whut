@@ -11,11 +11,15 @@ public interface UserInfoMapper {
 
     int insertSelective(UserInfo record);
 
+    List<UserInfo> selectByExampleWithBLOBs(UserInfoExample example);
+
     List<UserInfo> selectByExample(UserInfoExample example);
 
     UserInfo selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(UserInfo record);
+
+    int updateByPrimaryKeyWithBLOBs(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
 }

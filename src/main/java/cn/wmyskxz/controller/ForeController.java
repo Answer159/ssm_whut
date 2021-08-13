@@ -78,7 +78,7 @@ public class ForeController {
 	@Autowired
 	EvaluationService evaluationService;
 
-	private ObjectMapper mapper;
+	private ObjectMapper mapper=new ObjectMapper();
 
 	@RequestMapping("/cancelCollectClass")
 	@ResponseBody
@@ -942,6 +942,24 @@ public class ForeController {
 		return map;
 	}
 
+	@RequestMapping("/markScore")
+	@ResponseBody
+	@ApiOperation(value = "对订单打分,type=0表示课程订单，等于1表示提问订单")
+	public Map markScore(Integer order_id,Integer type,Integer score){
+		Map map=new HashMap();
+		if(type==0){
+			Order_ order_=orderService.get(order_id);
+			order_.setScore(score);
+			orderService.update(order_);
+		}
+		else{
+			Order_q order_q=order_qService.get(order_id);
+			order_q.setScore(score);
+			order_qService.update(order_q);
+		}
+		map.put("msg","success");
+		return map;
+	}
 
 	//last:6-6
 	@RequestMapping("/myQuestion")
@@ -1830,6 +1848,7 @@ public class ForeController {
 		order_.setPrice(classInfo.getPrice());
 		order_.setSuggestTime(classInfo.getSuggestTime());
 		order_.setCreateDate(new Date());
+		order_.setScore(0);
 
 		orderService.add(order_);
 
@@ -1857,6 +1876,7 @@ public class ForeController {
 		order_q.setPrice(question.getPrice());
 		order_q.setSuggestTime(question.getSuggestTime());
 		order_q.setCreateDate(new Date());
+		order_q.setScore(0);
 
 		order_qService.add(order_q);
 

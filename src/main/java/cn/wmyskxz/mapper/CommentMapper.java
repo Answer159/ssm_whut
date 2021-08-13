@@ -11,11 +11,15 @@ public interface CommentMapper {
 
     int insertSelective(Comment record);
 
+    List<Comment> selectByExampleWithBLOBs(CommentExample example);
+
     List<Comment> selectByExample(CommentExample example);
 
     Comment selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Comment record);
+
+    int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
 }

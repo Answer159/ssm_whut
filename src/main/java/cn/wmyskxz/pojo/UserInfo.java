@@ -3,6 +3,10 @@ package cn.wmyskxz.pojo;
 public class UserInfo {
     private Integer id;
 
+    private Integer sex;
+
+    private Integer domain_id;
+
     private String account;
 
     private String username;
@@ -11,13 +15,13 @@ public class UserInfo {
 
     private Integer graghId;
 
-    private String selfIntro;
-
     private String phone;
 
     private String collection_class;
 
     private String collection_question;
+
+    private String selfIntro;
 
     public Integer getId() {
         return id;
@@ -25,6 +29,22 @@ public class UserInfo {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public Integer getDomain_id() {
+        return domain_id;
+    }
+
+    public void setDomain_id(Integer domain_id) {
+        this.domain_id = domain_id;
     }
 
     public String getAccount() {
@@ -59,14 +79,6 @@ public class UserInfo {
         this.graghId = graghId;
     }
 
-    public String getSelfIntro() {
-        return selfIntro;
-    }
-
-    public void setSelfIntro(String selfIntro) {
-        this.selfIntro = selfIntro == null ? null : selfIntro.trim();
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -89,5 +101,13 @@ public class UserInfo {
 
     public void setCollection_question(String collection_question) {
         this.collection_question = collection_question == null ? null : collection_question.trim();
+    }
+
+    public String getSelfIntro() {
+        return selfIntro;
+    }
+
+    public void setSelfIntro(String selfIntro) {
+        this.selfIntro = selfIntro == null ? null : selfIntro.trim();
     }
 }

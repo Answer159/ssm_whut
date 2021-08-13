@@ -5,8 +5,6 @@ import java.util.Date;
 public class Comment {
     private Integer id;
 
-    private String content;
-
     private Integer use_id;
 
     private Integer question_id;
@@ -19,20 +17,14 @@ public class Comment {
 
     private Integer replay_id;
 
+    private String content;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 
     public Integer getUse_id() {
@@ -81,5 +73,13 @@ public class Comment {
 
     public void setReplay_id(Integer replay_id) {
         this.replay_id = replay_id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 }
