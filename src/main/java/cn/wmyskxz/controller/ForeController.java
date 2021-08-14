@@ -365,7 +365,26 @@ public class ForeController {
 		map.put("msg","success");
 		return map;
 	}
-
+	@RequestMapping("/editQuestionPage")
+	@ResponseBody
+	@ApiOperation(value = "修改提问页面")
+	public Map editQuestionPage(HttpSession session,Integer question_id){
+		Question question=questionService.get(question_id);
+		Map map=new HashMap();
+		map.put("questionInfo",question_id);
+		Category category=categoryService.get(question.getDomain_id());
+		map.put("category",category);
+		List<Category> categories=categoryService.list();
+		map.put("categories",categories);
+		List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question_id);
+		List<String> imgPath=new ArrayList<>();
+		String path="D:\\SdData\\img\\questionImage\\";
+		for(QuestionImageInfo questionImageInfo:questionImageInfos){
+			imgPath.add(path+question_id+"\\"+questionImageInfo.getId()+".jpg");
+		}
+		map.put("imgPath",imgPath);
+		return map;
+	}
 	@RequestMapping("/editClassPage")
 	@ResponseBody
 	@ApiOperation(value = "修改课程页面")
@@ -377,6 +396,13 @@ public class ForeController {
 		map.put("category",category);
 		List<Category> categories=categoryService.list();
 		map.put("categories",categories);
+		List<ClassImageInfo> classImageInfos=classImageInfoService.list(class_id);
+		List<String> imgPath=new ArrayList<>();
+		String path="D:\\SdData\\img\\classImage\\";
+		for(ClassImageInfo classImageInfo:classImageInfos){
+			imgPath.add(path+class_id+"\\"+classImageInfo.getId()+".jpg");
+		}
+		map.put("imgPath",imgPath);
 		return map;
 	}
 	@RequestMapping("/editClass")
@@ -469,20 +495,6 @@ public class ForeController {
 	@ResponseBody
 	@ApiOperation(value = "主页内容")
 	public Map home() {
-
-		File directory = new File(".");
-		String path=null;
-		try {
-			path = directory.getCanonicalPath();//获取当前路径
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
-		}
-		System.out.println("\n\n\n\n\n\n");
-		System.out.println(path);
-		System.out.println("\n\n\n\n\n\n");
 		List<Category> categories = categoryService.list();
 		//classInfoService.fill(categories);
 		//classInfoService.fillByRow(categories);
@@ -491,6 +503,8 @@ public class ForeController {
 		List<ClassInfo> classInfos1=new ArrayList<>();
 		List<UserInfo> userInfos=userInfoService.list();
 		List<UserInfo> userInfos1=new ArrayList<>();
+		List<List<String>>imgPath=new ArrayList<>();
+		String path="D:\\SdData\\img\\classImage\\";
 		int count=0;
 		for(ClassInfo classInfo:classInfos){
 			if(count>=10){
@@ -498,6 +512,12 @@ public class ForeController {
 			}
 			classInfos1.add(classInfo);
 			count++;
+			List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo.getId());
+			List<String> imgs=new ArrayList<>();
+			for(ClassImageInfo classImageInfo:classImageInfos){
+				imgs.add(path+classInfo.getId()+"\\"+classImageInfo.getId()+".jpg");
+			}
+			imgPath.add(imgs);
 		}
 		count=0;
 		for(UserInfo userInfo:userInfos){
@@ -513,6 +533,8 @@ public class ForeController {
 		map.put("links",links);
 		map.put("classInfos",classInfos1);
 		map.put("userInfos",userInfos1);
+		map.put("imgPath",imgPath);
+
 		return map;
 	}
 
@@ -875,7 +897,7 @@ public class ForeController {
 	public Map listQuestionByKeyWord(String keyword,int pageNum)
 	{
 		List<Question> questionList=questionService.search(keyword);
-
+		String path="D:\\SdData\\img\\questionImage\\";
 		//分页
 		Integer pageCount=10;
 		Integer pages=questionList.size()/pageCount;
@@ -892,18 +914,28 @@ public class ForeController {
 		Integer pageC=pageCount;
 		for(int page=0;page<pages;page++)
 		{
-			if(page!=pageNum){
+			if(page!=pageNum-1){
 				continue;
 			}
 			List<Question> pageList=new ArrayList<>();
 			List<UserInfo> authorList=new ArrayList<>();
+			List<String> imgPath=new ArrayList<>();
 			if(page==pages-1) {
 				pageC=lastPage;
 			}
 			for(int count=0;count<pageC;count++)
 			{
-				pageList.add(questionList.get(page*pageCount+count));
-				authorList.add(userInfoService.get(questionList.get(page*pageCount+count).getUse_id()));
+				Question question=questionList.get(page*pageCount+count);
+				pageList.add(question);
+				authorList.add(userInfoService.get(question.getUse_id()));
+				List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question.getId());
+				if(questionImageInfos.size()!=0){
+					imgPath.add(path+question.getId()+"\\"+questionImageInfos.get(0).getId()+".jpg");
+				}
+				else{
+					imgPath.add("no picture");
+				}
+
 			}
 			map.put("pageList"+ (page + 1),pageList);
 			map.put("authorList"+ (page + 1),authorList);
@@ -982,8 +1014,20 @@ public class ForeController {
 	public Map myQuestion(HttpSession session){
 		UserInfo userInfo=(UserInfo) session.getAttribute("userInfo");
 		Map map=new HashMap();
+		String path="D:\\SdData\\img\\questionImage\\";
 		List<Question> questions=questionService.listByUser(userInfo.getId());
+		List<String> imgPath=new ArrayList<>();
+		for(Question question:questions){
+			List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question.getId());
+			if(questionImageInfos.size()!=0){
+				imgPath.add(path+question.getId()+"\\"+questionImageInfos.get(0).getId()+".jpg");
+			}
+			else{
+				imgPath.add("no picture");
+			}
+		}
 		map.put("questions",questions);
+		map.put("imgPath",imgPath);
 		return map;
 	}
 
@@ -993,8 +1037,18 @@ public class ForeController {
 	@ApiOperation(value = "我的所有课程")
 	public Map myClassInfo(HttpSession session) {
 		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
+		String path="D:\\SdData\\img\\classImage\\";
 		List<ClassInfo> classInfos=classInfoService.listByUser(userInfo.getId());
-
+		List<String> imgPath=new ArrayList<>();
+		for(ClassInfo classInfo:classInfos){
+			List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo.getId());
+			if(classImageInfos.size()!=0){
+				imgPath.add(path+classInfo.getId()+"\\"+classImageInfos.get(0).getId()+".jpg");
+			}
+			else{
+				imgPath.add("no picture");
+			}
+		}
 		Map map=new HashMap();
 		map.put("classInfos",classInfos);
 		return map;
@@ -1642,6 +1696,7 @@ public class ForeController {
 	public Map sortQuestion(@RequestParam("sort") String sort,
 							 @RequestParam("keyword") String keyword,int pageNum) {
 		List<Question> questions = questionService.search(keyword);
+		String path="D:\\SdData\\img\\questionImage\\";
 		Map map=new HashMap();
 		int page=questions.size()/10;
 		int lastPage=questions.size()%10;
@@ -1664,17 +1719,30 @@ public class ForeController {
 				continue;
 			}
 			List<Question> questions1=new ArrayList<>();
+			List<String> imgPath=new ArrayList<>();
+			List<UserInfo> userInfos=new ArrayList<>();
 			int num=10;
 			if(i==page-1&&lastPage!=0){
 				num=lastPage;
 			}
 			for(int j=0;j<num;j++){
+				Question question=questions.get(i*10+j);
+				questions1.add(question);
+				userInfos.add(userInfoService.get(question.getUse_id()));
+				List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question.getId());
+				if(questionImageInfos.size()!=0){
+					imgPath.add(path+question.getId()+"\\"+questionImageInfos.get(0).getId()+".jpg");
+				}
+				else{
+					imgPath.add("no picture");
+				}
 
-				questions1.add(questions.get(i*10+j));
 			}
 			//classInfoss.add(classInfos1);
 			map.put("questions",questions1);
 			map.put("pages",page);
+			map.put("imgPath",imgPath);
+			map.put("userInfos",userInfos);
 			break;
 		}
 
@@ -1687,6 +1755,7 @@ public class ForeController {
 	public Map sortClassInfo(@RequestParam("sort") String sort,
 							 @RequestParam("keyword") String keyword,int pageNum) {
 		List<ClassInfo> classInfos = classInfoService.search(keyword);
+		String path="D:\\SdData\\img\\classImage\\";
 		Map map=new HashMap();
 		int page=classInfos.size()/10;
 		int lastPage=classInfos.size()%10;
@@ -1709,17 +1778,29 @@ public class ForeController {
 				continue;
 			}
 			List<ClassInfo> classInfos1=new ArrayList<>();
+			List<String> imgPath=new ArrayList<>();
+			List<UserInfo> userInfos=new ArrayList<>();
 			int num=10;
 			if(i==page-1&&lastPage!=0){
 				num=lastPage;
 			}
 			for(int j=0;j<num;j++){
-
-				classInfos1.add(classInfos.get(i*10+j));
+				ClassInfo classInfo=classInfos.get(i*10+j);
+				classInfos1.add(classInfo);
+				userInfos.add(userInfoService.get(classInfo.getUse_id()));
+				List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo.getId());
+				if(classImageInfos.size()!=0){
+					imgPath.add(path+classInfo.getId()+"\\"+classImageInfos.get(0).getId()+".jpg");
+				}
+				else{
+					imgPath.add("no picture");
+				}
 			}
 			//classInfoss.add(classInfos1);
 			map.put("classInfos",classInfos1);
 			map.put("pages",page);
+			map.put("imgPath",imgPath);
+			map.put("userInfos",userInfos);
 			break;
 		}
 
@@ -1745,20 +1826,31 @@ public class ForeController {
 			}
 			List<ClassInfo> classInfos1=new ArrayList<>();
 			List<UserInfo> userInfos=new ArrayList<>();
+			List<String> imgPath=new ArrayList<>();
 			int num=10;
 			if(i==page-1&&lastPage!=0){
 				num=lastPage;
 			}
+			String path="D:\\SdData\\img\\classImage\\";
 			for(int j=0;j<num;j++){
 				ClassInfo classInfo=classInfos.get(i*10+j);
 				classInfos1.add(classInfo);
 				userInfos.add(userInfoService.get(classInfo.getUse_id()));
+				List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo.getId());
+				if(classImageInfos.size()!=0){
+					imgPath.add(path+classInfo.getId()+"\\"+classImageInfos.get(0).getId()+".jpg");
+				}
+				else{
+					imgPath.add("no picture");
+				}
+
 			}
 			//classInfoss.add(classInfos1);
 			map.put("resultNum",classInfos.size());
 			map.put("classInfos",classInfos1);
 			map.put("userInfos",userInfos);
 			map.put("pages",page);
+			map.put("imgPath",imgPath);
 			break;
 		}
 		return map;

@@ -72,18 +72,18 @@ public class PageController {
         return map;
     }
 
-    @RequestMapping("/editQuestionPage")
-    @ResponseBody
-    public Map editQuestionPage(HttpSession session,Integer question_id){
-        Question question=questionService.get(question_id);
-        Map map=new HashMap();
-        Category category=categoryService.get(question.getDomain_id());
-        List<Category> categories=categoryService.list();
-        map.put("question",question);
-        map.put("category",category);
-        map.put("categories",categories);
-        return map;
-    }
+//    @RequestMapping("/editQuestionPage")
+//    @ResponseBody
+//    public Map editQuestionPage(HttpSession session,Integer question_id){
+//        Question question=questionService.get(question_id);
+//        Map map=new HashMap();
+//        Category category=categoryService.get(question.getDomain_id());
+//        List<Category> categories=categoryService.list();
+//        map.put("question",question);
+//        map.put("category",category);
+//        map.put("categories",categories);
+//        return map;
+//    }
     @RequestMapping("/editUserPage")
     @ResponseBody
     public Map editUserPage(UserInfo userInfo,HttpSession session){

@@ -22,6 +22,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -59,19 +61,46 @@ public class TestService {
 //        System.out.println("客户端获的数据:" + result);
 //    }
     public void testCategory(){
-        c=new ClassPathXmlApplicationContext("spring-mybatis.xml");
-        classInfoService=c.getBean(ClassInfoServiceImpl.class);
-        questionService=c.getBean(QuestionServiceImpl.class);
-        userInfoService=c.getBean(UserInfoServiceImpl.class);
-        UserInfo userInfo=new UserInfo();
-        userInfo.setAccount("aaaaaaaaaa");
-        userInfo.setPassword("1234");
-        userInfo.setPhone("123123");
-        int id=userInfoService.add(userInfo);
-        id=userInfo.getId();
-        System.out.println("\n\n\n\n\n\n");
-        System.out.println(id);
-        System.out.println("\n\n\n\n\n\n");
+        String filePath;
+        File directory = new File(".");
+        String path=null;
+        try {
+            path = directory.getCanonicalPath();//获取当前路径
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+        System.out.println(path);
+        filePath="src/main/webapp/img/questionImage/14";
+        String filename="a.jpg";
+        File ss=new File(filePath);
+        if (!ss.exists()) {
+            ss.mkdirs();
+        }
+        File uploadPicture = new File(filePath,filename);
+        if(uploadPicture.exists()){
+            uploadPicture.delete();
+        }
+        try {
+            uploadPicture.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        c=new ClassPathXmlApplicationContext("spring-mybatis.xml");
+//        classInfoService=c.getBean(ClassInfoServiceImpl.class);
+//        questionService=c.getBean(QuestionServiceImpl.class);
+//        userInfoService=c.getBean(UserInfoServiceImpl.class);
+//        UserInfo userInfo=new UserInfo();
+//        userInfo.setAccount("aaaaaaaaaa");
+//        userInfo.setPassword("1234");
+//        userInfo.setPhone("123123");
+//        int id=userInfoService.add(userInfo);
+//        id=userInfo.getId();
+//        System.out.println("\n\n\n\n\n\n");
+//        System.out.println(id);
+//        System.out.println("\n\n\n\n\n\n");
         //List<Category> categoryList=categoryService.list();
 //        for(Category c:categoryList){
 //            System.out.println("domain:"+c.getDomain());
