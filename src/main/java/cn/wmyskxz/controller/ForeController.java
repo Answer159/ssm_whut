@@ -368,7 +368,8 @@ public class ForeController {
 	@RequestMapping("/editQuestionPage")
 	@ResponseBody
 	@ApiOperation(value = "修改提问页面")
-	public Map editQuestionPage(HttpSession session,Integer question_id){
+	public Map editQuestionPage(HttpSession session,Integer question_id,
+								HttpServletRequest request){
 		Question question=questionService.get(question_id);
 		Map map=new HashMap();
 		map.put("questionInfo",question_id);
@@ -378,9 +379,12 @@ public class ForeController {
 		map.put("categories",categories);
 		List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question_id);
 		List<String> imgPath=new ArrayList<>();
-		String path="D:\\SdData\\img\\questionImage\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/questionImage/");
+//		String path="D:\\SdData\\img\\questionImage\\";
 		for(QuestionImageInfo questionImageInfo:questionImageInfos){
-			imgPath.add(path+question_id+"\\"+questionImageInfo.getId()+".jpg");
+			imgPath.add(filePath+question_id+"/"+questionImageInfo.getId()+".jpg");
 		}
 		map.put("imgPath",imgPath);
 		return map;
@@ -388,7 +392,8 @@ public class ForeController {
 	@RequestMapping("/editClassPage")
 	@ResponseBody
 	@ApiOperation(value = "修改课程页面")
-	public Map editClassPage(HttpSession session,Integer class_id){
+	public Map editClassPage(HttpSession session,Integer class_id,
+							 HttpServletRequest request){
 		ClassInfo classInfo=classInfoService.get(class_id);
 		Map map=new HashMap();
 		map.put("classInfo",classInfo);
@@ -398,9 +403,12 @@ public class ForeController {
 		map.put("categories",categories);
 		List<ClassImageInfo> classImageInfos=classImageInfoService.list(class_id);
 		List<String> imgPath=new ArrayList<>();
-		String path="D:\\SdData\\img\\classImage\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/classImage/");
+//		String path="D:\\SdData\\img\\classImage\\";
 		for(ClassImageInfo classImageInfo:classImageInfos){
-			imgPath.add(path+class_id+"\\"+classImageInfo.getId()+".jpg");
+			imgPath.add(filePath+class_id+"/"+classImageInfo.getId()+".jpg");
 		}
 		map.put("imgPath",imgPath);
 		return map;
@@ -494,7 +502,7 @@ public class ForeController {
 	@RequestMapping("/home")
 	@ResponseBody
 	@ApiOperation(value = "主页内容")
-	public Map home() {
+	public Map home(HttpServletRequest request) {
 		List<Category> categories = categoryService.list();
 		//classInfoService.fill(categories);
 		//classInfoService.fillByRow(categories);
@@ -504,7 +512,10 @@ public class ForeController {
 		List<UserInfo> userInfos=userInfoService.list();
 		List<UserInfo> userInfos1=new ArrayList<>();
 		List<List<String>>imgPath=new ArrayList<>();
-		String path="D:\\SdData\\img\\classImage\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/classImage/");
+//		String path="D:\\SdData\\img\\classImage\\";
 		int count=0;
 		for(ClassInfo classInfo:classInfos){
 			if(count>=10){
@@ -515,7 +526,7 @@ public class ForeController {
 			List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo.getId());
 			List<String> imgs=new ArrayList<>();
 			for(ClassImageInfo classImageInfo:classImageInfos){
-				imgs.add(path+classInfo.getId()+"\\"+classImageInfo.getId()+".jpg");
+				imgs.add(filePath+classInfo.getId()+"/"+classImageInfo.getId()+".jpg");
 			}
 			imgPath.add(imgs);
 		}
@@ -894,10 +905,13 @@ public class ForeController {
 	@RequestMapping("/listQuestionByKeyWord")
 	@ResponseBody
 	@ApiOperation(value = "关键词搜索提问")
-	public Map listQuestionByKeyWord(String keyword,int pageNum)
+	public Map listQuestionByKeyWord(String keyword,int pageNum,HttpServletRequest request)
 	{
 		List<Question> questionList=questionService.search(keyword);
-		String path="D:\\SdData\\img\\questionImage\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/questionImage/");
+//		String path="D:\\SdData\\img\\questionImage\\";
 		//分页
 		Integer pageCount=10;
 		Integer pages=questionList.size()/pageCount;
@@ -930,7 +944,7 @@ public class ForeController {
 				authorList.add(userInfoService.get(question.getUse_id()));
 				List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question.getId());
 				if(questionImageInfos.size()!=0){
-					imgPath.add(path+question.getId()+"\\"+questionImageInfos.get(0).getId()+".jpg");
+					imgPath.add(filePath+question.getId()+"/"+questionImageInfos.get(0).getId()+".jpg");
 				}
 				else{
 					imgPath.add("no picture");
@@ -1011,16 +1025,19 @@ public class ForeController {
 	@RequestMapping("/myQuestion")
 	@ResponseBody
 	@ApiOperation(value = "我的所有提问")
-	public Map myQuestion(HttpSession session){
+	public Map myQuestion(HttpSession session,HttpServletRequest request){
 		UserInfo userInfo=(UserInfo) session.getAttribute("userInfo");
 		Map map=new HashMap();
-		String path="D:\\SdData\\img\\questionImage\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/questionImage/");
+//		String path="D:\\SdData\\img\\questionImage\\";
 		List<Question> questions=questionService.listByUser(userInfo.getId());
 		List<String> imgPath=new ArrayList<>();
 		for(Question question:questions){
 			List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question.getId());
 			if(questionImageInfos.size()!=0){
-				imgPath.add(path+question.getId()+"\\"+questionImageInfos.get(0).getId()+".jpg");
+				imgPath.add(filePath+question.getId()+"/"+questionImageInfos.get(0).getId()+".jpg");
 			}
 			else{
 				imgPath.add("no picture");
@@ -1035,15 +1052,18 @@ public class ForeController {
 	@RequestMapping("/myClassInfo")
 	@ResponseBody
 	@ApiOperation(value = "我的所有课程")
-	public Map myClassInfo(HttpSession session) {
+	public Map myClassInfo(HttpSession session,HttpServletRequest request) {
 		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
-		String path="D:\\SdData\\img\\classImage\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/classImage/");
+//		String path="D:\\SdData\\img\\classImage\\";
 		List<ClassInfo> classInfos=classInfoService.listByUser(userInfo.getId());
 		List<String> imgPath=new ArrayList<>();
 		for(ClassInfo classInfo:classInfos){
 			List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo.getId());
 			if(classImageInfos.size()!=0){
-				imgPath.add(path+classInfo.getId()+"\\"+classImageInfos.get(0).getId()+".jpg");
+				imgPath.add(filePath+classInfo.getId()+"/"+classImageInfos.get(0).getId()+".jpg");
 			}
 			else{
 				imgPath.add("no picture");
@@ -1328,14 +1348,14 @@ public class ForeController {
 	public boolean postImage(HttpServletRequest request, MultipartFile[] pictures, int class_id, int type){
 		String filePath;
 		if(type==0){
-//			filePath = request.getSession().getServletContext()
-//					.getRealPath("img/classImage/" + class_id);
-			filePath="D:\\SdData\\img\\classImage\\"+class_id;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("img/classImage/" + class_id);
+//			filePath="D:\\SdData\\img\\classImage\\"+class_id;
 		}
 		else{
-//			filePath = request.getSession().getServletContext()
-//					.getRealPath("img/questionImage/" + class_id);
-			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("img/questionImage/" + class_id);
+//			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
 		}
 		File dirs=new File(filePath);
 		if (!dirs.exists()) {
@@ -1395,14 +1415,14 @@ public class ForeController {
 	public boolean postVideo(HttpServletRequest request,MultipartFile[] videos,int class_id,int type){
 		String filePath;
 		if(type==0){
-//			filePath = request.getSession().getServletContext()
-//					.getRealPath("video/classVideo/" + class_id);
-			filePath="D:\\SdData\\img\\classVideo\\"+class_id;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("video/classVideo/" + class_id);
+//			filePath="D:\\SdData\\img\\classVideo\\"+class_id;
 		}
 		else{
-//			filePath = request.getSession().getServletContext()
-//					.getRealPath("video/questionVideo/" + class_id);
-			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("video/questionVideo/" + class_id);
+//			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
 		}
 		File dirs=new File(filePath);
 		if (!dirs.exists()) {
@@ -1481,7 +1501,10 @@ public class ForeController {
 		userInfo.setCollection_class(null);
 		userInfoService.add(userInfo);
 		Integer id=userInfo.getId();
-		String filePath="D:\\SdData\\img\\userImage\\"+id;
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/userImage/" + id);
+//		String filePath="D:\\SdData\\img\\userImage\\"+id;
 		String fileName="0.jpg";
 		File dirs=new File(filePath);
 
@@ -1596,7 +1619,7 @@ public class ForeController {
 	@RequestMapping("/showClassInfo")
 	@ResponseBody
 	@ApiOperation(value = "显示课程")
-	public Map showClassInfo(@RequestParam("classInfo_id") Integer classInfo_id) {
+	public Map showClassInfo(@RequestParam("classInfo_id") Integer classInfo_id,HttpServletRequest request) {
 		ClassInfo classInfo = classInfoService.get(classInfo_id);
 		List<Evaluation> evaluations = evaluationService.listByClass(classInfo_id);
 		List<UserInfo> evaluationUsers=new ArrayList<>();
@@ -1604,13 +1627,16 @@ public class ForeController {
 			evaluationUsers.add(userInfoService.get(evaluation.getUse_id()));
 		}
 		List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo_id);
-		String path="D:\\SdData\\img\\classImage\\";
-		path+=classInfo_id+"\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/classImage/"+classInfo_id+"/");
+//		String path="D:\\SdData\\img\\classImage\\";
+//		path+=classInfo_id+"\\";
 		Category category=categoryService.get(classInfo.getDomain_id());
 		UserInfo user=userInfoService.get(classInfo.getUse_id());
 		List<String> imgPath=new ArrayList<>();
 		for(ClassImageInfo classImageInfo:classImageInfos){
-			imgPath.add(path+classImageInfo.getId()+".jpg");
+			imgPath.add(filePath+classImageInfo.getId()+".jpg");
 		}
 
 		Map map=new HashMap();
@@ -1650,7 +1676,7 @@ public class ForeController {
 	@RequestMapping("/showQuestion")
 	@ResponseBody
 	@ApiOperation(value = "显示提问")
-	public Map showQuestion(@RequestParam("question_id")Integer QuestionId){
+	public Map showQuestion(@RequestParam("question_id")Integer QuestionId,HttpServletRequest request){
 		Question question=questionService.get(QuestionId);
 		Category category=categoryService.get(question.getDomain_id());
 		List<Comment> comments=commentService.listByQuestion(question.getId());
@@ -1673,11 +1699,14 @@ public class ForeController {
 			comments1.add(comment);
 		}
 		List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(QuestionId);
-		String path="D:\\SdData\\img\\questionImage\\";
-		path+=QuestionId+"\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/questionImage/"+QuestionId+"/");
+//		String path="D:\\SdData\\img\\questionImage\\";
+//		path+=QuestionId+"\\";
 		List<String> imgPath=new ArrayList<>();
 		for(QuestionImageInfo questionImageInfo:questionImageInfos){
-			imgPath.add(path+questionImageInfo.getId()+".jpg");
+			imgPath.add(filePath+questionImageInfo.getId()+".jpg");
 		}
 		Map map=new HashMap();
 		map.put("question",question);
@@ -1694,9 +1723,12 @@ public class ForeController {
 	@ResponseBody
 	@ApiOperation(value = "求助排序")
 	public Map sortQuestion(@RequestParam("sort") String sort,
-							 @RequestParam("keyword") String keyword,int pageNum) {
+							 @RequestParam("keyword") String keyword,int pageNum,HttpServletRequest request) {
 		List<Question> questions = questionService.search(keyword);
-		String path="D:\\SdData\\img\\questionImage\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/questionImage/");
+//		String path="D:\\SdData\\img\\questionImage\\";
 		Map map=new HashMap();
 		int page=questions.size()/10;
 		int lastPage=questions.size()%10;
@@ -1731,7 +1763,7 @@ public class ForeController {
 				userInfos.add(userInfoService.get(question.getUse_id()));
 				List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question.getId());
 				if(questionImageInfos.size()!=0){
-					imgPath.add(path+question.getId()+"\\"+questionImageInfos.get(0).getId()+".jpg");
+					imgPath.add(filePath+question.getId()+"/"+questionImageInfos.get(0).getId()+".jpg");
 				}
 				else{
 					imgPath.add("no picture");
@@ -1753,9 +1785,13 @@ public class ForeController {
 	@ResponseBody
 	@ApiOperation(value = "课程排序")
 	public Map sortClassInfo(@RequestParam("sort") String sort,
-							 @RequestParam("keyword") String keyword,int pageNum) {
+							 @RequestParam("keyword") String keyword,int pageNum,
+							 HttpServletRequest request) {
 		List<ClassInfo> classInfos = classInfoService.search(keyword);
-		String path="D:\\SdData\\img\\classImage\\";
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/classImage/");
+//		String path="D:\\SdData\\img\\classImage\\";
 		Map map=new HashMap();
 		int page=classInfos.size()/10;
 		int lastPage=classInfos.size()%10;
@@ -1790,7 +1826,7 @@ public class ForeController {
 				userInfos.add(userInfoService.get(classInfo.getUse_id()));
 				List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo.getId());
 				if(classImageInfos.size()!=0){
-					imgPath.add(path+classInfo.getId()+"\\"+classImageInfos.get(0).getId()+".jpg");
+					imgPath.add(filePath+classInfo.getId()+"/"+classImageInfos.get(0).getId()+".jpg");
 				}
 				else{
 					imgPath.add("no picture");
@@ -1811,7 +1847,8 @@ public class ForeController {
 	@RequestMapping("/searchClassInfo")
 	@ResponseBody
 	@ApiOperation(value = "根据关键词搜索课程")
-	public Map searchClassInfo(@RequestParam("keyword") String keyword,int pageNum) {
+	public Map searchClassInfo(@RequestParam("keyword") String keyword,int pageNum,
+							   HttpServletRequest request) {
 		List<ClassInfo> classInfos = classInfoService.search(keyword);
 		Map map=new HashMap();
 		//List<List<ClassInfo>> classInfoss=new ArrayList<>();
@@ -1831,14 +1868,17 @@ public class ForeController {
 			if(i==page-1&&lastPage!=0){
 				num=lastPage;
 			}
-			String path="D:\\SdData\\img\\classImage\\";
+			String filePath;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("img/classImage/");
+//			String path="D:\\SdData\\img\\classImage\\";
 			for(int j=0;j<num;j++){
 				ClassInfo classInfo=classInfos.get(i*10+j);
 				classInfos1.add(classInfo);
 				userInfos.add(userInfoService.get(classInfo.getUse_id()));
 				List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo.getId());
 				if(classImageInfos.size()!=0){
-					imgPath.add(path+classInfo.getId()+"\\"+classImageInfos.get(0).getId()+".jpg");
+					imgPath.add(filePath+classInfo.getId()+"/"+classImageInfos.get(0).getId()+".jpg");
 				}
 				else{
 					imgPath.add("no picture");
@@ -1899,11 +1939,15 @@ public class ForeController {
 	@RequestMapping("/updateUserImage")
 	@ResponseBody
 	@ApiOperation(value = "更换头像")
-	public Map updateUserImage(HttpSession session,MultipartFile picture,HttpServletRequest request){
+	public Map updateUserImage(HttpSession session,MultipartFile picture,
+							   HttpServletRequest request){
 		Map map=new HashMap();
 		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
 		Integer id=userInfo.getGraghId();
-		String filePath = "D:\\SdData\\img\\userImage\\"+userInfo.getId();
+		String filePath;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/userImage/"+userInfo.getId());
+//		String filePath = "D:\\SdData\\img\\userImage\\"+userInfo.getId();
 		String fileName = id+1 + ".jpg";
 		userInfo.setGraghId(id+1);
 		File uploadImg=new File(filePath,fileName);
