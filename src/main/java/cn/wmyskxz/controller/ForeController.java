@@ -77,6 +77,7 @@ public class ForeController {
 	Order_qService order_qService;
 	@Autowired
 	EvaluationService evaluationService;
+	String defaultPath="localhost:8080/Tmall_SSM_war/img/";
 
 	private ObjectMapper mapper=new ObjectMapper();
 
@@ -380,8 +381,9 @@ public class ForeController {
 		List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(question_id);
 		List<String> imgPath=new ArrayList<>();
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/questionImage/");
+		filePath=defaultPath+"questionImage/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/questionImage/");
 //		String path="D:\\SdData\\img\\questionImage\\";
 		for(QuestionImageInfo questionImageInfo:questionImageInfos){
 			imgPath.add(filePath+question_id+"/"+questionImageInfo.getId()+".jpg");
@@ -404,8 +406,9 @@ public class ForeController {
 		List<ClassImageInfo> classImageInfos=classImageInfoService.list(class_id);
 		List<String> imgPath=new ArrayList<>();
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/classImage/");
+		filePath=defaultPath+"classImage/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/classImage/");
 //		String path="D:\\SdData\\img\\classImage\\";
 		for(ClassImageInfo classImageInfo:classImageInfos){
 			imgPath.add(filePath+class_id+"/"+classImageInfo.getId()+".jpg");
@@ -513,8 +516,9 @@ public class ForeController {
 		List<UserInfo> userInfos1=new ArrayList<>();
 		List<List<String>>imgPath=new ArrayList<>();
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/classImage/");
+		filePath=defaultPath+"classImage/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/classImage/");
 //		String path="D:\\SdData\\img\\classImage\\";
 		int count=0;
 		for(ClassInfo classInfo:classInfos){
@@ -909,8 +913,9 @@ public class ForeController {
 	{
 		List<Question> questionList=questionService.search(keyword);
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/questionImage/");
+		filePath=defaultPath+"questionImage/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/questionImage/");
 //		String path="D:\\SdData\\img\\questionImage\\";
 		//分页
 		Integer pageCount=10;
@@ -1029,8 +1034,9 @@ public class ForeController {
 		UserInfo userInfo=(UserInfo) session.getAttribute("userInfo");
 		Map map=new HashMap();
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/questionImage/");
+		filePath=defaultPath+"questionImage/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/questionImage/");
 //		String path="D:\\SdData\\img\\questionImage\\";
 		List<Question> questions=questionService.listByUser(userInfo.getId());
 		List<String> imgPath=new ArrayList<>();
@@ -1055,8 +1061,9 @@ public class ForeController {
 	public Map myClassInfo(HttpSession session,HttpServletRequest request) {
 		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/classImage/");
+		filePath=defaultPath+"classImage/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/classImage/");
 //		String path="D:\\SdData\\img\\classImage\\";
 		List<ClassInfo> classInfos=classInfoService.listByUser(userInfo.getId());
 		List<String> imgPath=new ArrayList<>();
@@ -1348,13 +1355,15 @@ public class ForeController {
 	public boolean postImage(HttpServletRequest request, MultipartFile[] pictures, int class_id, int type){
 		String filePath;
 		if(type==0){
-			filePath = request.getSession().getServletContext()
-					.getRealPath("img/classImage/" + class_id);
+			filePath=defaultPath+"classImage/"+class_id;
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("img/classImage/" + class_id);
 //			filePath="D:\\SdData\\img\\classImage\\"+class_id;
 		}
 		else{
-			filePath = request.getSession().getServletContext()
-					.getRealPath("img/questionImage/" + class_id);
+			filePath=defaultPath+"questionImage/"+class_id;
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("img/questionImage/" + class_id);
 //			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
 		}
 		File dirs=new File(filePath);
@@ -1415,13 +1424,15 @@ public class ForeController {
 	public boolean postVideo(HttpServletRequest request,MultipartFile[] videos,int class_id,int type){
 		String filePath;
 		if(type==0){
-			filePath = request.getSession().getServletContext()
-					.getRealPath("video/classVideo/" + class_id);
+			filePath=defaultPath+"classVideo/"+class_id;
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("video/classVideo/" + class_id);
 //			filePath="D:\\SdData\\img\\classVideo\\"+class_id;
 		}
 		else{
-			filePath = request.getSession().getServletContext()
-					.getRealPath("video/questionVideo/" + class_id);
+			filePath=defaultPath+"questionVideo/"+class_id;
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("video/questionVideo/" + class_id);
 //			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
 		}
 		File dirs=new File(filePath);
@@ -1502,8 +1513,9 @@ public class ForeController {
 		userInfoService.add(userInfo);
 		Integer id=userInfo.getId();
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/userImage/" + id);
+		filePath=defaultPath+"userImage/"+id;
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/userImage/" + id);
 //		String filePath="D:\\SdData\\img\\userImage\\"+id;
 		String fileName="0.jpg";
 		File dirs=new File(filePath);
@@ -1628,8 +1640,9 @@ public class ForeController {
 		}
 		List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo_id);
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/classImage/"+classInfo_id+"/");
+		filePath=defaultPath+"classImage/"+classInfo_id+"/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/classImage/"+classInfo_id+"/");
 //		String path="D:\\SdData\\img\\classImage\\";
 //		path+=classInfo_id+"\\";
 		Category category=categoryService.get(classInfo.getDomain_id());
@@ -1700,8 +1713,9 @@ public class ForeController {
 		}
 		List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(QuestionId);
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/questionImage/"+QuestionId+"/");
+		filePath=defaultPath+"questionImage/"+QuestionId+"/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/questionImage/"+QuestionId+"/");
 //		String path="D:\\SdData\\img\\questionImage\\";
 //		path+=QuestionId+"\\";
 		List<String> imgPath=new ArrayList<>();
@@ -1726,8 +1740,9 @@ public class ForeController {
 							 @RequestParam("keyword") String keyword,int pageNum,HttpServletRequest request) {
 		List<Question> questions = questionService.search(keyword);
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/questionImage/");
+		filePath=defaultPath+"questionImage/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/questionImage/");
 //		String path="D:\\SdData\\img\\questionImage\\";
 		Map map=new HashMap();
 		int page=questions.size()/10;
@@ -1789,8 +1804,9 @@ public class ForeController {
 							 HttpServletRequest request) {
 		List<ClassInfo> classInfos = classInfoService.search(keyword);
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/classImage/");
+		filePath=defaultPath+"classImage/";
+//		filePath = request.getSession().getServletContext()
+//				.getRealPath("img/classImage/");
 //		String path="D:\\SdData\\img\\classImage\\";
 		Map map=new HashMap();
 		int page=classInfos.size()/10;
@@ -1869,8 +1885,9 @@ public class ForeController {
 				num=lastPage;
 			}
 			String filePath;
-			filePath = request.getSession().getServletContext()
-					.getRealPath("img/classImage/");
+			filePath=defaultPath+"classImage/";
+//			filePath = request.getSession().getServletContext()
+//					.getRealPath("img/classImage/");
 //			String path="D:\\SdData\\img\\classImage\\";
 			for(int j=0;j<num;j++){
 				ClassInfo classInfo=classInfos.get(i*10+j);
@@ -1945,8 +1962,9 @@ public class ForeController {
 		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
 		Integer id=userInfo.getGraghId();
 		String filePath;
-		filePath = request.getSession().getServletContext()
-				.getRealPath("img/userImage/"+userInfo.getId());
+		filePath=defaultPath+"userImage/"+userInfo.getId();
+//		filePath= request.getSession().getServletContext()
+//				.getRealPath("img/userImage/"+userInfo.getId());
 //		String filePath = "D:\\SdData\\img\\userImage\\"+userInfo.getId();
 		String fileName = id+1 + ".jpg";
 		userInfo.setGraghId(id+1);
