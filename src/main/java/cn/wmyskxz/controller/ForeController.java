@@ -1550,7 +1550,8 @@ public class ForeController {
 			evaluationUsers.add(userInfoService.get(evaluation.getUse_id()));
 		}
 		List<ClassImageInfo> classImageInfos=classImageInfoService.list(classInfo_id);
-		String path="./src/main/webapp/img/classImage";
+		String path="D:\\SdData\\img\\classImage\\";
+		path+=classInfo_id+"\\";
 		Category category=categoryService.get(classInfo.getDomain_id());
 		UserInfo user=userInfoService.get(classInfo.getUse_id());
 		List<String> imgPath=new ArrayList<>();
@@ -1618,7 +1619,8 @@ public class ForeController {
 			comments1.add(comment);
 		}
 		List<QuestionImageInfo> questionImageInfos=questionImageInfoService.list(QuestionId);
-		String path="./src/main/webapp/img/questionImage";
+		String path="D:\\SdData\\img\\questionImage\\";
+		path+=QuestionId+"\\";
 		List<String> imgPath=new ArrayList<>();
 		for(QuestionImageInfo questionImageInfo:questionImageInfos){
 			imgPath.add(path+questionImageInfo.getId()+".jpg");
