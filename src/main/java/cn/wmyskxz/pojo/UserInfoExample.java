@@ -504,52 +504,62 @@ public class UserInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdEqualTo(Integer value) {
+        public Criteria andGraghIdEqualTo(String value) {
             addCriterion("graghId =", value, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdNotEqualTo(Integer value) {
+        public Criteria andGraghIdNotEqualTo(String value) {
             addCriterion("graghId <>", value, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdGreaterThan(Integer value) {
+        public Criteria andGraghIdGreaterThan(String value) {
             addCriterion("graghId >", value, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andGraghIdGreaterThanOrEqualTo(String value) {
             addCriterion("graghId >=", value, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdLessThan(Integer value) {
+        public Criteria andGraghIdLessThan(String value) {
             addCriterion("graghId <", value, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdLessThanOrEqualTo(Integer value) {
+        public Criteria andGraghIdLessThanOrEqualTo(String value) {
             addCriterion("graghId <=", value, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdIn(List<Integer> values) {
+        public Criteria andGraghIdLike(String value) {
+            addCriterion("graghId like", value, "graghId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGraghIdNotLike(String value) {
+            addCriterion("graghId not like", value, "graghId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGraghIdIn(List<String> values) {
             addCriterion("graghId in", values, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdNotIn(List<Integer> values) {
+        public Criteria andGraghIdNotIn(List<String> values) {
             addCriterion("graghId not in", values, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdBetween(Integer value1, Integer value2) {
+        public Criteria andGraghIdBetween(String value1, String value2) {
             addCriterion("graghId between", value1, value2, "graghId");
             return (Criteria) this;
         }
 
-        public Criteria andGraghIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andGraghIdNotBetween(String value1, String value2) {
             addCriterion("graghId not between", value1, value2, "graghId");
             return (Criteria) this;
         }

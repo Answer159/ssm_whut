@@ -13,7 +13,7 @@ public class UserInfo {
 
     private String password;
 
-    private Integer graghId;
+    private String graghId;
 
     private String phone;
 
@@ -71,12 +71,12 @@ public class UserInfo {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getGraghId() {
+    public String getGraghId() {
         return graghId;
     }
 
-    public void setGraghId(Integer graghId) {
-        this.graghId = graghId;
+    public void setGraghId(String graghId) {
+        this.graghId = graghId == null ? null : graghId.trim();
     }
 
     public String getPhone() {

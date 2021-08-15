@@ -952,7 +952,7 @@ public class ForeController {
 					imgPath.add(filePath+question.getId()+"/"+questionImageInfos.get(0).getId()+".jpg");
 				}
 				else{
-					imgPath.add("no picture");
+					imgPath.add(defaultPath+"questionImage/defaultImg.jpg");
 				}
 
 			}
@@ -1260,7 +1260,6 @@ public class ForeController {
 		classInfoService.add(classInfo);
 		Integer id=classInfo.getId();
 		Map map=new HashMap();
-
 		if(!postImage(request,pictures,id,0)){
 			map.put("msg","fail");
 			return map;
@@ -1507,7 +1506,8 @@ public class ForeController {
 			map1.put("msg",msg1);
 			return map1;
 		}
-		userInfo.setGraghId(0);
+		Long time=System.currentTimeMillis();
+		userInfo.setGraghId(defaultPath+"userImage/"+time+".jpg");
 		userInfo.setCollection_question(null);
 		userInfo.setCollection_class(null);
 		userInfoService.add(userInfo);
@@ -1517,7 +1517,7 @@ public class ForeController {
 		filePath = request.getSession().getServletContext()
 				.getRealPath("img/userImage/" + id);
 //		String filePath="D:\\SdData\\img\\userImage\\"+id;
-		String fileName="0.jpg";
+		String fileName=time+".jpg";
 		File dirs=new File(filePath);
 
 		if(dirs.exists()){
@@ -1648,11 +1648,22 @@ public class ForeController {
 		Category category=categoryService.get(classInfo.getDomain_id());
 		UserInfo user=userInfoService.get(classInfo.getUse_id());
 		List<String> imgPath=new ArrayList<>();
+		Map map=new HashMap();
+		if(classImageInfos.size()==0){
+			imgPath.add(defaultPath+"classImage/defaultImg.jpg");
+			map.put("classInfo",classInfo);
+			map.put("evaluations",evaluations);
+			map.put("category",category);
+			map.put("user",user);
+			map.put("evaluationUsers",evaluationUsers);
+			map.put("imgPath",imgPath);
+			return map;
+		}
 		for(ClassImageInfo classImageInfo:classImageInfos){
 			imgPath.add(filePath+classImageInfo.getId()+".jpg");
 		}
 
-		Map map=new HashMap();
+
 		map.put("classInfo",classInfo);
 		map.put("evaluations",evaluations);
 		map.put("category",category);
@@ -1719,10 +1730,20 @@ public class ForeController {
 //		String path="D:\\SdData\\img\\questionImage\\";
 //		path+=QuestionId+"\\";
 		List<String> imgPath=new ArrayList<>();
+		Map map=new HashMap();
+		if(questionImageInfos.size()==0){
+			imgPath.add(defaultPath+"questionImage/defaultImg.jpg");
+			map.put("question",question);
+			map.put("category",category);
+			map.put("comments",comments1);
+			map.put("userInfo",userInfo);
+			map.put("commentUsers",commentUser);
+			map.put("imgPath",imgPath);
+		}
 		for(QuestionImageInfo questionImageInfo:questionImageInfos){
 			imgPath.add(filePath+questionImageInfo.getId()+".jpg");
 		}
-		Map map=new HashMap();
+
 		map.put("question",question);
 		map.put("category",category);
 		map.put("comments",comments1);
@@ -1781,7 +1802,7 @@ public class ForeController {
 					imgPath.add(filePath+question.getId()+"/"+questionImageInfos.get(0).getId()+".jpg");
 				}
 				else{
-					imgPath.add("no picture");
+					imgPath.add(defaultPath+"questionImage/defaultImg.jpg");
 				}
 
 			}
@@ -1845,7 +1866,7 @@ public class ForeController {
 					imgPath.add(filePath+classInfo.getId()+"/"+classImageInfos.get(0).getId()+".jpg");
 				}
 				else{
-					imgPath.add("no picture");
+					imgPath.add(defaultPath+"classImage/defaultImg.jpg");
 				}
 			}
 			//classInfoss.add(classInfos1);
@@ -1898,7 +1919,7 @@ public class ForeController {
 					imgPath.add(filePath+classInfo.getId()+"/"+classImageInfos.get(0).getId()+".jpg");
 				}
 				else{
-					imgPath.add("no picture");
+					imgPath.add(defaultPath+"classImage/defaultImg.jpg");
 				}
 
 			}
@@ -1960,14 +1981,15 @@ public class ForeController {
 							   HttpServletRequest request){
 		Map map=new HashMap();
 		UserInfo userInfo=(UserInfo)session.getAttribute("userInfo");
-		Integer id=userInfo.getGraghId();
+		Long time=System.currentTimeMillis();
+
 		String filePath;
 		filePath=defaultPath+"userImage/"+userInfo.getId();
 //		filePath= request.getSession().getServletContext()
 //				.getRealPath("img/userImage/"+userInfo.getId());
 //		String filePath = "D:\\SdData\\img\\userImage\\"+userInfo.getId();
-		String fileName = id+1 + ".jpg";
-		userInfo.setGraghId(id+1);
+		String fileName = time + ".jpg";
+		userInfo.setGraghId(filePath+"/"+fileName);
 		File uploadImg=new File(filePath,fileName);
 
 
