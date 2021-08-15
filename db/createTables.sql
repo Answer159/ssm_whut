@@ -6,7 +6,7 @@ create table userInfo(
 	account varchar(20) not null,
 	username varchar(255),
 	password varchar(255) not null,
-	graghId int DEFAULT NULL,
+	graghId varchar(255) DEFAULT 'http://localhost:8080/Tmall_SSM_war/img/userImage/defaultImg.jpg',
 	selfIntro varchar(MAX) DEFAULT 'Œ¥–¥»Î',
 	phone varchar(20) NOT NULL,
 	collection_class varchar(500) default null,
