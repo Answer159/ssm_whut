@@ -1807,6 +1807,7 @@ public class ForeController {
 
 			}
 			//classInfoss.add(classInfos1);
+			map.put("resultNum",questions.size());
 			map.put("questions",questions1);
 			map.put("pages",page);
 			map.put("imgPath",imgPath);
@@ -1870,6 +1871,7 @@ public class ForeController {
 				}
 			}
 			//classInfoss.add(classInfos1);
+			map.put("resultNum",classInfos.size());
 			map.put("classInfos",classInfos1);
 			map.put("pages",page);
 			map.put("imgPath",imgPath);
