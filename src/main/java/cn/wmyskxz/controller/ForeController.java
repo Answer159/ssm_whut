@@ -1355,15 +1355,15 @@ public class ForeController {
 	public boolean postImage(HttpServletRequest request, MultipartFile[] pictures, int class_id, int type){
 		String filePath;
 		if(type==0){
-			filePath=defaultPath+"classImage/"+class_id;
-//			filePath = request.getSession().getServletContext()
-//					.getRealPath("img/classImage/" + class_id);
+//			filePath=defaultPath+"classImage/"+class_id;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("img/classImage/" + class_id);
 //			filePath="D:\\SdData\\img\\classImage\\"+class_id;
 		}
 		else{
-			filePath=defaultPath+"questionImage/"+class_id;
-//			filePath = request.getSession().getServletContext()
-//					.getRealPath("img/questionImage/" + class_id);
+//			filePath=defaultPath+"questionImage/"+class_id;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("img/questionImage/" + class_id);
 //			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
 		}
 		File dirs=new File(filePath);
@@ -1424,15 +1424,15 @@ public class ForeController {
 	public boolean postVideo(HttpServletRequest request,MultipartFile[] videos,int class_id,int type){
 		String filePath;
 		if(type==0){
-			filePath=defaultPath+"classVideo/"+class_id;
-//			filePath = request.getSession().getServletContext()
-//					.getRealPath("video/classVideo/" + class_id);
+//			filePath=defaultPath+"classVideo/"+class_id;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("video/classVideo/" + class_id);
 //			filePath="D:\\SdData\\img\\classVideo\\"+class_id;
 		}
 		else{
-			filePath=defaultPath+"questionVideo/"+class_id;
-//			filePath = request.getSession().getServletContext()
-//					.getRealPath("video/questionVideo/" + class_id);
+//			filePath=defaultPath+"questionVideo/"+class_id;
+			filePath = request.getSession().getServletContext()
+					.getRealPath("video/questionVideo/" + class_id);
 //			filePath="D:\\SdData\\img\\questionImage\\"+class_id;
 		}
 		File dirs=new File(filePath);
@@ -1513,9 +1513,9 @@ public class ForeController {
 		userInfoService.add(userInfo);
 		Integer id=userInfo.getId();
 		String filePath;
-		filePath=defaultPath+"userImage/"+id;
-//		filePath = request.getSession().getServletContext()
-//				.getRealPath("img/userImage/" + id);
+//		filePath=defaultPath+"userImage/"+id;
+		filePath = request.getSession().getServletContext()
+				.getRealPath("img/userImage/" + id);
 //		String filePath="D:\\SdData\\img\\userImage\\"+id;
 		String fileName="0.jpg";
 		File dirs=new File(filePath);
