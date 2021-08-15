@@ -77,7 +77,7 @@ public class ForeController {
 	Order_qService order_qService;
 	@Autowired
 	EvaluationService evaluationService;
-	String defaultPath="localhost:8080/Tmall_SSM_war/img/";
+	String defaultPath="http://localhost:8080/Tmall_SSM_war/img/";
 
 	private ObjectMapper mapper=new ObjectMapper();
 
