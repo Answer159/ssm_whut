@@ -1757,7 +1757,7 @@ public class ForeController {
 	@RequestMapping("/sortQuestion")
 	@ResponseBody
 	@ApiOperation(value = "求助排序")
-	public Map sortQuestion(@RequestParam("sort") String sort,
+	public Map sortQuestion(@RequestParam("sort") Integer sort,
 							 @RequestParam("keyword") String keyword,int pageNum,HttpServletRequest request) {
 		List<Question> questions = questionService.search(keyword);
 		String filePath;
@@ -1768,13 +1768,13 @@ public class ForeController {
 		Map map=new HashMap();
 		int page=questions.size()/10;
 		int lastPage=questions.size()%10;
-		if (null != sort) {
+		if (0 != sort) {
 			switch (sort) {
-				case "suggestTime":
+				case 3:
 					Collections.sort(questions, Comparator.comparing(Question::getSuggestTime));
 					break;
 
-				case "price":
+				case 1:
 					Collections.sort(questions, Comparator.comparing(Question::getPrice));
 					break;
 			}
@@ -1821,7 +1821,7 @@ public class ForeController {
 	@RequestMapping("/sortClassInfo")
 	@ResponseBody
 	@ApiOperation(value = "课程排序")
-	public Map sortClassInfo(@RequestParam("sort") String sort,
+	public Map sortClassInfo(@RequestParam("sort") Integer sort,
 							 @RequestParam("keyword") String keyword,int pageNum,
 							 HttpServletRequest request) {
 		List<ClassInfo> classInfos = classInfoService.search(keyword);
@@ -1833,13 +1833,13 @@ public class ForeController {
 		Map map=new HashMap();
 		int page=classInfos.size()/10;
 		int lastPage=classInfos.size()%10;
-		if (null != sort) {
+		if (0 != sort) {
 			switch (sort) {
-				case "suggestTime":
+				case 3:
 					Collections.sort(classInfos, Comparator.comparing(ClassInfo::getSuggestTime));
 					break;
 
-				case "price":
+				case 1:
 					Collections.sort(classInfos, Comparator.comparing(ClassInfo::getPrice));
 					break;
 			}
